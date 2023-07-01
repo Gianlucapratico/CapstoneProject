@@ -48,22 +48,15 @@ public class PrenotazioneRunner implements CommandLineRunner {
 	private List<Prenotazione> generateRandomPrenotazioni(List<Comune> comuni, int quantity) {
 		List<Prenotazione> prenotazioni = new ArrayList<>();
 
-		Faker faker = new Faker(); // Creazione di un oggetto Faker per generare dati fake
+		Faker faker = new Faker();
 
 		for (int i = 0; i < quantity; i++) {
-			// Genera dati random per la prenotazione
 			Comune randomComune = getRandomComune(comuni);
 			LocalDate randomDataPrenotazione = faker.date().past(30, TimeUnit.DAYS).toInstant()
 					.atZone(ZoneId.systemDefault()).toLocalDate();
 			String randomNomePasseggero = faker.name().fullName();
 
-			// Crea l'oggetto Prenotazione
-			Prenotazione prenotazione = new Prenotazione();
-			prenotazione.setComune(randomComune);
-			prenotazione.setDataPrenotazione(randomDataPrenotazione);
-			prenotazione.setNomePasseggero(randomNomePasseggero);
-
-			// Aggiungi la prenotazione alla lista
+			Prenotazione prenotazione = new Prenotazione(randomComune, randomDataPrenotazione, randomNomePasseggero);
 			prenotazioni.add(prenotazione);
 		}
 

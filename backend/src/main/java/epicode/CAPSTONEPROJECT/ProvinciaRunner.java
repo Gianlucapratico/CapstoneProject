@@ -60,9 +60,12 @@ public class ProvinciaRunner implements CommandLineRunner {
 						}
 
 					}
-					Provincia provincia1 = new Provincia(siglaProvincia, provincia, regione, comuniPerProvincia);
+					Provincia provincia1 = new Provincia();
+					provincia1.setSigla(siglaProvincia);
+					provincia1.setNome(provincia);
+					provincia1.setRegione(regione);
+					provincia1.setComuni(comuniPerProvincia);
 					provinciaRepo.save(provincia1);
-
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -17,8 +17,11 @@ public class ProvinciaService {
 	ProvinciaRepository provinciaRepo;
 
 	public Provincia createProvincia(Provincia provincia) {
-		Provincia newProvincia = new Provincia(provincia.getSigla(), provincia.getNome(), provincia.getRegione(),
-				provincia.getComuni());
+		Provincia newProvincia = new Provincia();
+		newProvincia.setSigla(provincia.getSigla());
+		newProvincia.setNome(provincia.getNome());
+		newProvincia.setRegione(provincia.getRegione());
+		newProvincia.setComuni(provincia.getComuni());
 		return provinciaRepo.save(newProvincia);
 	}
 

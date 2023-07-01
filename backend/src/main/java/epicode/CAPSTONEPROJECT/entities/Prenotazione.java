@@ -24,6 +24,7 @@ public class Prenotazione {
 
 	private LocalDate dataPrenotazione;
 	private String nomePasseggero;
+
 	@ManyToOne
 	@JoinColumn(name = "comune_id")
 	private Comune comune;
@@ -31,13 +32,11 @@ public class Prenotazione {
 	@OneToOne(mappedBy = "prenotazione")
 	private Recensione recensione;
 
-	public Prenotazione(Long id, Comune comune, LocalDate dataPrenotazione, String nomePasseggero) {
-		super();
-		this.id = id;
+	public Prenotazione(Comune comune, LocalDate dataPrenotazione, String nomePasseggero) {
 		this.comune = comune;
 		this.dataPrenotazione = dataPrenotazione;
 		this.nomePasseggero = nomePasseggero;
 	}
 
-	// Costruttori, getter e setter, ecc.
+	// Resto del codice...
 }

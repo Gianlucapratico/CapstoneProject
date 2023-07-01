@@ -1,12 +1,14 @@
 package epicode.CAPSTONEPROJECT.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.opencsv.bean.CsvBindByName;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -26,22 +28,24 @@ public class Provincia {
 	@Id
 	@GeneratedValue
 	private UUID id;
-	@CsvBindByName(column = "Sigle")
+
+	@Column(name = "sigle")
 	private String sigla;
-	@CsvBindByName(column = "Provincia")
+
+	@Column(name = "provincia")
 	private String nome;
-	@CsvBindByName(column = "Regione")
+
+	@Column(name = "regione")
 	private String regione;
-	@OneToMany(mappedBy = "provincia")
+
+	@OneToMany(mappedBy = "provincia", fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private List<Comune> comuni;
 
-	public Provincia(String sigla, String nome, String regione, List<Comune> comuni) {
-		super();
+	public Provincia(String sigla, String nome, String regione) {
 		this.sigla = sigla;
 		this.nome = nome;
 		this.regione = regione;
-		this.comuni = comuni;
+		this.comuni = new ArrayList<>();
 	}
-
 }
