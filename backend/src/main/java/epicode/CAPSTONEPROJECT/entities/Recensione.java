@@ -1,8 +1,9 @@
 package epicode.CAPSTONEPROJECT.entities;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -16,15 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Recensione {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-//	@ManyToOne
-//	@JoinColumn(name = "viaggio_id")
-//	private Viaggio viaggio;
+	@GeneratedValue
+	private UUID id;
 
 	private String commento;
 	private int valutazione;
+//	@OneToOne
+//	@JoinColumn(name = "prenotazione_id")
+//	private Prenotazione prenotazione;
 	@OneToOne
 	@JoinColumn(name = "prenotazione_id")
 	private Prenotazione prenotazione;

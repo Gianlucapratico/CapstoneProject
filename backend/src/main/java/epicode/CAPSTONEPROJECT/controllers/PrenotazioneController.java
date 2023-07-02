@@ -16,38 +16,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import epicode.CAPSTONEPROJECT.entities.Cliente;
-import epicode.CAPSTONEPROJECT.services.ClienteService;
+import epicode.CAPSTONEPROJECT.entities.Prenotazione;
+import epicode.CAPSTONEPROJECT.services.PrenotazioneService;
 
 @RestController
-@RequestMapping("/api/clienti")
-public class ClienteController {
+@RequestMapping("/api/prenotazioni")
+public class PrenotazioneController {
 
 	@Autowired
-	private ClienteService clienteService;
+	private PrenotazioneService prenotazioneService;
 
 	@GetMapping("")
-	public Page<Cliente> getAllClienti(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "cognome") String sortBy) {
+	public Page<Prenotazione> getAllPrenotazioni(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "dataPrenotazione") String sortBy) {
 
-		return clienteService.findAll(page, size, sortBy);
+		return prenotazioneService.findAll(page, size, sortBy);
 	}
 
 	@GetMapping("/{id}")
-	public Cliente getClienteById(@PathVariable UUID id) {
-		return clienteService.findById(id);
+	public Prenotazione getprenotazioneById(@PathVariable UUID id) {
+		return prenotazioneService.findById(id);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente createCliente(@RequestBody Cliente cliente) {
-		return clienteService.create(cliente);
+	public Prenotazione createPrenotazione(@RequestBody Prenotazione prenotazione) {
+		return prenotazioneService.create(prenotazione);
 	}
 
 	@PutMapping("/{id}")
 
-	public Cliente updateCliente(@PathVariable UUID id, @RequestBody Cliente cliente) {
-		return clienteService.update(id, cliente);
+	public Prenotazione updatePrenotazione(@PathVariable UUID id, @RequestBody Prenotazione prenotazione) {
+		return prenotazioneService.update(id, prenotazione);
 
 	}
 
@@ -55,6 +56,6 @@ public class ClienteController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteCliente(@PathVariable UUID id) {
 
-		clienteService.delete(id);
+		prenotazioneService.delete(id);
 	}
 }

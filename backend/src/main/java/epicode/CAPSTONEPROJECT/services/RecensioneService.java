@@ -1,51 +1,61 @@
 package epicode.CAPSTONEPROJECT.services;
 
-import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import epicode.CAPSTONEPROJECT.entities.Recensione;
+import epicode.CAPSTONEPROJECT.exceptions.NotFoundException;
 import epicode.CAPSTONEPROJECT.repositories.RecensioneRepository;
 
 @Service
 public class RecensioneService {
-	private final RecensioneRepository recensioneRepository;
 
 	@Autowired
-	public RecensioneService(RecensioneRepository recensioneRepository) {
-		this.recensioneRepository = recensioneRepository;
+	RecensioneRepository recensioneRepo;
+
+	// ***** CREATE *****
+	public Recensione create(Recensione recensione) {
+		return recensioneRepo.save(recensione);
 	}
 
-	public Recensione getRecensioneById(Long id) {
-		return recensioneRepository.findById(id).orElse(null);
+	// ***** READ *****
+	public Page<Recensione> findAll(int page, int size, String sortBy) {
+		if (size < 0)
+			size = 0;
+		if (size > 100)
+			size = 100;
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+		return recensioneRepo.findAll(pageable);
 	}
 
-	public List<Recensione> getAllRecensioni() {
-		return recensioneRepository.findAll();
+	// read by Id
+	public Recensione findById(UUID recensioneId) throws NotFoundException {
+		return recensioneRepo.findById(recensioneId).orElseThrow(() -> new NotFoundException("Recensione non trovata"));
 	}
 
-	public Recensione saveRecensione(Recensione recensione) {
-		return recensioneRepository.save(recensione);
+	// ***** UPDATE *****
+	public Recensione update(UUID recensioneId, Recensione recensione) throws NotFoundException {
+		Recensione recensioneFound = this.findById(recensioneId);
+
+		recensioneFound.setCommento(recensione.getCommento());
+		recensioneFound.setValutazione(recensione.getValutazione());
+		recensioneFound.setPrenotazione(recensione.getPrenotazione());
+
+		return recensioneRepo.save(recensioneFound);
 	}
 
-	public Recensione updateRecensione(Long id, Recensione recensione) {
-		Recensione existingRecensione = recensioneRepository.findById(id).orElse(null);
-		if (existingRecensione != null) {
-			existingRecensione.setPrenotazione(recensione.getPrenotazione());
-			existingRecensione.setCommento(recensione.getCommento());
-			existingRecensione.setValutazione(recensione.getValutazione());
-			return recensioneRepository.save(existingRecensione);
-		} else {
-			return null;
-		}
-	}
+	// ***** DELETE *****
+	public void delete(UUID recensioneId) throws NotFoundException {
+		Recensione recensioneFound = this.findById(recensioneId);
 
-	public void deleteRecensione(Long id) {
-		recensioneRepository.deleteById(id);
-	}
-
-	public Recensione createRecensione(Recensione recensione) {
-		return recensioneRepository.save(recensione);
+		recensioneRepo.delete(recensioneFound);
 	}
 }

@@ -23,8 +23,6 @@ public class ClienteService {
 	public Cliente create(Cliente c) {
 		Cliente newCliente = new Cliente(c.getNome(), c.getEmail(), c.getTelefono(), c.getCognome());
 
-		// newCliente.setFatturatoAnnuo(newCliente.fatturatoAnnuo(newCliente.getFatture()));
-
 		return clienteRepo.save(newCliente);
 	}
 
@@ -44,47 +42,6 @@ public class ClienteService {
 	public Cliente findById(UUID clienteId) throws NotFoundException {
 		return clienteRepo.findById(clienteId).orElseThrow(() -> new NotFoundException("Cliente non trovato"));
 	}
-
-	// read by nome
-//
-//	public List<Cliente> findByNome(String nome) throws NotFoundException {
-//		List<Cliente> clienti = clienteRepo.findByNomeContaining(nome);
-//		if (clienti.isEmpty()) {
-//			throw new NotFoundException("Nessuna fattura trovata con stato " + nome);
-//		}
-//		return clienti;
-//	}
-//
-//	// read by FatturatoAnnuo
-//	public List<Cliente> findByFatturatoAnnuo(double fatturatoAnnuo) throws NotFoundException {
-//		List<Cliente> clienti = clienteRepo.findByFatturatoAnnuo(fatturatoAnnuo);
-//		if (clienti.isEmpty()) {
-//			throw new NotFoundException("Nessun cliente trovato con il fatturato annuo: " + fatturatoAnnuo);
-//		}
-//		return clienti;
-//	}
-//
-//	// read by DataInserimento
-//	public List<Cliente> findByDataInserimento(LocalDate data) throws NotFoundException {
-//		List<Cliente> clienti = clienteRepo.findByDataInserimento(data);
-//		if (clienti.isEmpty()) {
-//			throw new NotFoundException("Nessun cliente trovato con la data di inserimento: " + data);
-//		}
-//		return clienti;
-//	}
-//
-//	// read by DataUltimoContatto
-//	public List<Cliente> findByDataUltimoContatto(LocalDate data) throws NotFoundException {
-//		List<Cliente> clienti = clienteRepo.findByDataUltimoContatto(data);
-//		if (clienti.isEmpty()) {
-//			throw new NotFoundException("Nessun cliente trovato con la data di ultimo contatto: " + data);
-//		}
-//		return clienti;
-//	}
-//	 public double getFatturatoAnnuo(UUID clienteId) {
-//	        BigDecimal fatturato = clienteRepo.calculateFatturatoAnnuo(clienteId);
-//	        return fatturato != null ? fatturato.doubleValue() : 0.0;
-//	    }
 
 	// ***** UPDATE *****
 	public Cliente update(UUID clienteId, Cliente c) throws NotFoundException {

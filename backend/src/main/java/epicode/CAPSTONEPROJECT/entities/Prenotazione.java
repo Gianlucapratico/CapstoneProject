@@ -1,10 +1,10 @@
 package epicode.CAPSTONEPROJECT.entities;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,8 +19,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Prenotazione {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue
+	private UUID id;
 
 	private LocalDate dataPrenotazione;
 	private String nomePasseggero;
@@ -29,6 +29,8 @@ public class Prenotazione {
 	@JoinColumn(name = "comune_id")
 	private Comune comune;
 
+//	@OneToOne(mappedBy = "prenotazione")
+//	private Recensione recensione;
 	@OneToOne(mappedBy = "prenotazione")
 	private Recensione recensione;
 
@@ -38,5 +40,9 @@ public class Prenotazione {
 		this.nomePasseggero = nomePasseggero;
 	}
 
-	// Resto del codice...
+	public Prenotazione(LocalDate dataPrenotazione, String nomePasseggero) {
+		this.dataPrenotazione = dataPrenotazione;
+		this.nomePasseggero = nomePasseggero;
+	}
+
 }
