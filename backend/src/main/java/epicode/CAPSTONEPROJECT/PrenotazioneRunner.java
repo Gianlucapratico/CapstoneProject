@@ -1,11 +1,11 @@
 package epicode.CAPSTONEPROJECT;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +46,10 @@ public class PrenotazioneRunner implements CommandLineRunner {
 			for (int i = 0; i < 20; i++) {
 				try {
 					Date prenotazione1 = faker.date().past(30, TimeUnit.DAYS);
-					LocalDate dataPrenotazione = prenotazione1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-					LocalDate dataPartenza = prenotazione1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-					LocalDate dataArrivo = prenotazione1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate dataPrenotazione = LocalDate.now().minusDays(ThreadLocalRandom.current().nextInt(1, 30));
+					LocalDate dataPartenza = LocalDate.now().plusDays(ThreadLocalRandom.current().nextInt(1, 10));
+					LocalDate dataArrivo = dataPartenza.plusDays(ThreadLocalRandom.current().nextInt(1, 10));
+
 					List<Cliente> clienti = clienterepo.findAll();
 					Cliente clienteRandom = clienti.get(random.nextInt(clienti.size()));
 //					List<Recensione> recensioni = recensioneRepository.findAll();
