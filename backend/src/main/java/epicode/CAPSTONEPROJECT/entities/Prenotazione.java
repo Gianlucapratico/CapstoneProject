@@ -21,28 +21,37 @@ public class Prenotazione {
 	@Id
 	@GeneratedValue
 	private UUID id;
-
 	private LocalDate dataPrenotazione;
-	private String nomePasseggero;
+	private LocalDate dataPartenza;
+	private LocalDate dataArrivo;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
 
 	@ManyToOne
-	@JoinColumn(name = "comune_id")
-	private Comune comune;
+	@JoinColumn(name = "destinazione_id")
+	private Destinazione destinazione;
 
-//	@OneToOne(mappedBy = "prenotazione")
-//	private Recensione recensione;
 	@OneToOne(mappedBy = "prenotazione")
 	private Recensione recensione;
 
-	public Prenotazione(Comune comune, LocalDate dataPrenotazione, String nomePasseggero) {
-		this.comune = comune;
+	public Prenotazione(Destinazione destinazione, LocalDate dataPrenotazione, Cliente cliente, LocalDate dataPartenza,
+			LocalDate dataArrivo, Recensione recensione) {
+		this.destinazione = destinazione;
 		this.dataPrenotazione = dataPrenotazione;
-		this.nomePasseggero = nomePasseggero;
+		this.cliente = cliente;
+		this.dataPartenza = dataPartenza;
+		this.dataArrivo = dataArrivo;
+		this.recensione = recensione;
 	}
 
-	public Prenotazione(LocalDate dataPrenotazione, String nomePasseggero) {
+	public Prenotazione(Destinazione destinazione, LocalDate dataPrenotazione, Cliente cliente, LocalDate dataPartenza,
+			LocalDate dataArrivo) {
+		this.destinazione = destinazione;
 		this.dataPrenotazione = dataPrenotazione;
-		this.nomePasseggero = nomePasseggero;
-	}
+		this.cliente = cliente;
+		this.dataPartenza = dataPartenza;
+		this.dataArrivo = dataArrivo;
 
+	}
 }

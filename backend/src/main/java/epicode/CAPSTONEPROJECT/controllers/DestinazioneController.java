@@ -16,43 +16,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import epicode.CAPSTONEPROJECT.entities.Comune;
-import epicode.CAPSTONEPROJECT.exceptions.NotFoundException;
-import epicode.CAPSTONEPROJECT.services.ComuneService;
+import epicode.CAPSTONEPROJECT.entities.Destinazione;
+import epicode.CAPSTONEPROJECT.services.DestinazioneService;
 
 @RestController
-@RequestMapping("/api/comuni")
-public class ComuneController {
+@RequestMapping("/api/destinazioni")
+public class DestinazioneController {
 	@Autowired
-	private ComuneService comuneService;
+	private DestinazioneService destinazioneService;
 
 	@GetMapping("")
-	public Page<Comune> getAllComuni(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "nomeProvincia") String sortBy) {
+	public Page<Destinazione> getAllDestinazioni(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "citta") String sortBy) {
 
-		return comuneService.findAll(page, size, sortBy);
+		return destinazioneService.findAll(page, size, sortBy);
 	}
 
 	@GetMapping("/{id}")
-	public Comune getComuneById(@PathVariable UUID id) {
-		return comuneService.findById(id);
+	public Destinazione getDestinazioneById(@PathVariable UUID id) {
+		return destinazioneService.findById(id);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Comune createCliente(@RequestBody Comune comune) {
-		return comuneService.create(comune);
+	public Destinazione createDestinazione(@RequestBody Destinazione destinazione) {
+		return destinazioneService.create(destinazione);
 	}
 
 	@PutMapping("/{id}")
-	public Comune updateComune(@PathVariable UUID id, @RequestBody Comune comune) throws NotFoundException {
-		return comuneService.update(id, comune);
+
+	public Destinazione updateDestinazione(@PathVariable UUID id, @RequestBody Destinazione destinazione) {
+		return destinazioneService.update(id, destinazione);
+
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteComune(@PathVariable UUID id) throws NotFoundException {
-		comuneService.delete(id);
-	}
+	public void deleteDestinazione(@PathVariable UUID id) {
 
+		destinazioneService.delete(id);
+	}
 }
