@@ -9,5 +9,8 @@ import epicode.CAPSTONEPROJECT.entities.Destinazione;
 
 @Repository
 public interface DestinazioneRepository extends JpaRepository<Destinazione, UUID> {
+//	List<Destinazione> findByCitta(String citta);
+//
+//	List<Destinazione> findByStato(String stato);
 
 }

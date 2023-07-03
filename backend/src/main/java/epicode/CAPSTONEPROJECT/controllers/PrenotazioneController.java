@@ -58,4 +58,15 @@ public class PrenotazioneController {
 
 		prenotazioneService.delete(id);
 	}
+
+//	@GetMapping("/data/{dataPrenotazione}")
+//	public List<Prenotazione> getPrenotazioniByDataPrenotazione(@PathVariable LocalDate dataPrenotazione) {
+//		return prenotazioneService.getPrenotazioniByDataPrenotazione(dataPrenotazione);
+//	}
+//
+//	@GetMapping("/cliente/{cliente}")
+//	public List<Prenotazione> getPrenotazioniByNomePasseggero(@PathVariable Cliente cliente) {
+//		return prenotazioneService.getPrenotazioniByCliente(cliente);
+//	}
+
 }

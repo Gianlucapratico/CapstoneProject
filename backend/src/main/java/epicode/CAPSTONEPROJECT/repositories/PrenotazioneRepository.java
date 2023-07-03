@@ -9,5 +9,9 @@ import epicode.CAPSTONEPROJECT.entities.Prenotazione;
 
 @Repository
 public interface PrenotazioneRepository extends JpaRepository<Prenotazione, UUID> {
-	// Eventuali metodi personalizzati per le operazioni sulle prenotazioni
+//	List<Prenotazione> findByDataPrenotazione(LocalDate dataPrenotazione);
+//
+//	List<Prenotazione> findByDestinazione(Destinazione destinazione);
+//
+//	List<Prenotazione> findByCliente(Cliente cliente);
 }

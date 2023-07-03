@@ -28,6 +28,18 @@ public class PrenotazioneService {
 
 	}
 
+//	public List<Prenotazione> getPrenotazioniByDataPrenotazione(LocalDate dataPrenotazione) {
+//		return prenotazioneRepo.findByDataPrenotazione(dataPrenotazione);
+//	}
+//
+//	public List<Prenotazione> getPrenotazioniByDestinazione(Destinazione destinazione) {
+//		return prenotazioneRepo.findByDestinazione(destinazione);
+//	}
+//
+//	public List<Prenotazione> getPrenotazioniByCliente(Cliente cliente) {
+//		return prenotazioneRepo.findByCliente(cliente);
+//	}
+
 	// ***** READ *****
 	public Page<Prenotazione> findAll(int page, int size, String sortBy) {
 		if (size < 0)

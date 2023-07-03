@@ -3,6 +3,8 @@ package epicode.CAPSTONEPROJECT.entities;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -28,6 +30,7 @@ public class Cliente {
 	private String cognome;
 	private String email;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Prenotazione> prenotazioni;
 
