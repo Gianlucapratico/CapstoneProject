@@ -31,8 +31,6 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/clienti/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/recensioni/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/roles/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/province/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/comuni/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/prenotazioni/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/destinazioni/**").authenticated());
 		// http.authorizeHttpRequests(auth ->

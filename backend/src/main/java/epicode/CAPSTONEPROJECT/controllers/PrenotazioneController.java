@@ -54,7 +54,7 @@ public class PrenotazioneController {
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteCliente(@PathVariable UUID id) {
+	public void deletePrenotazione(@PathVariable UUID id) {
 
 		prenotazioneService.delete(id);
 	}

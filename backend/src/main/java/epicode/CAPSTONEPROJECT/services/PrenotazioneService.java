@@ -53,8 +53,9 @@ public class PrenotazioneService {
 	}
 
 	// read by Id
-	public Prenotazione findById(UUID clienteId) throws NotFoundException {
-		return prenotazioneRepo.findById(clienteId).orElseThrow(() -> new NotFoundException("Cliente non trovato"));
+	public Prenotazione findById(UUID prenotazioneId) throws NotFoundException {
+		return prenotazioneRepo.findById(prenotazioneId)
+				.orElseThrow(() -> new NotFoundException("Prenotazione non trovata"));
 	}
 
 	// ***** UPDATE *****
