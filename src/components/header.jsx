@@ -1,10 +1,13 @@
 import React from "react";
 import Loader from "./loader";
-
+import { Link, useLocation } from "react-router-dom";
 const Header = () => {
+  const location = useLocation();
+
   return (
     <>
       <Loader></Loader>
+
       <header>
         <div className="header">
           <div className="container">
@@ -38,35 +41,53 @@ const Header = () => {
                     id="navbarsExample04"
                   >
                     <ul className="navbar-nav mr-auto">
-                      <li className="nav-item active">
-                        <a className="nav-link" href="index.html">
-                          Home
-                        </a>
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/home" ? "active" : ""
+                        }`}
+                        to="/"
+                      >
+                        Home
+                      </Link>
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/about" ? "active" : ""
+                        }`}
+                        to="/about"
+                      >
+                        About
+                      </Link>
+
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/ourtravel" ? "active" : ""
+                          }`}
+                          to="/ourtravel"
+                        >
+                          Our Travel
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="about.html">
-                          About
-                        </a>
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/login" ? "active" : ""
+                          }`}
+                          to="/login"
+                        >
+                          Login
+                        </Link>
                       </li>
+
                       <li className="nav-item">
-                        <a className="nav-link" href="room.html">
-                          Our room
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="gallery.html">
-                          Gallery
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="blog.html">
-                          Blog
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="contact.html">
-                          Contact Us
-                        </a>
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/sign in" ? "active" : ""
+                          }`}
+                          to="/sign in"
+                        >
+                          Sign In
+                        </Link>
                       </li>
                     </ul>
                   </div>
