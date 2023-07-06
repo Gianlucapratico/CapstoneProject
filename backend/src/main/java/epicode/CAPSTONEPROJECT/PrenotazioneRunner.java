@@ -1,12 +1,10 @@
 package epicode.CAPSTONEPROJECT;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,12 +14,12 @@ import org.springframework.stereotype.Component;
 import com.github.javafaker.Faker;
 
 import epicode.CAPSTONEPROJECT.entities.Cliente;
-import epicode.CAPSTONEPROJECT.entities.Destinazione;
 import epicode.CAPSTONEPROJECT.entities.Prenotazione;
+import epicode.CAPSTONEPROJECT.entities.Viaggio;
 import epicode.CAPSTONEPROJECT.repositories.ClienteRepository;
-import epicode.CAPSTONEPROJECT.repositories.DestinazioneRepository;
 import epicode.CAPSTONEPROJECT.repositories.PrenotazioneRepository;
 import epicode.CAPSTONEPROJECT.repositories.RecensioneRepository;
+import epicode.CAPSTONEPROJECT.repositories.ViaggioRepository;
 
 @Order(3)
 @Component
@@ -36,7 +34,7 @@ public class PrenotazioneRunner implements CommandLineRunner {
 	RecensioneRepository recensioneRepository;
 
 	@Autowired
-	DestinazioneRepository destinazioneRepository;
+	ViaggioRepository viaggioRepository;
 
 	@Override
 	public void run(String... args) {
@@ -45,28 +43,31 @@ public class PrenotazioneRunner implements CommandLineRunner {
 		if (prenotazionerepo.count() == 0) {
 			for (int i = 0; i < 20; i++) {
 				try {
-					Date prenotazione1 = faker.date().past(30, TimeUnit.DAYS);
 					LocalDate dataPrenotazione = LocalDate.now().minusDays(ThreadLocalRandom.current().nextInt(1, 30));
 					LocalDate dataPartenza = LocalDate.now().plusDays(ThreadLocalRandom.current().nextInt(1, 10));
 					LocalDate dataArrivo = dataPartenza.plusDays(ThreadLocalRandom.current().nextInt(1, 10));
 
 					List<Cliente> clienti = clienterepo.findAll();
 					Cliente clienteRandom = clienti.get(random.nextInt(clienti.size()));
-//					List<Recensione> recensioni = recensioneRepository.findAll();
-//					Recensione recensioneRandom = recensioni.get(random.nextInt(recensioni.size()));
-					List<Destinazione> destinazioni = destinazioneRepository.findAll();
-					Destinazione destinazioneRandom = destinazioni.get(random.nextInt(destinazioni.size()));
+					List<Viaggio> viaggi = viaggioRepository.findAll();
+					Viaggio viaggioRandom = viaggi.get(random.nextInt(viaggi.size()));
 
-					Prenotazione prenotazione = new Prenotazione(destinazioneRandom, dataPrenotazione, clienteRandom,
-							dataPartenza, dataArrivo);
+					System.out.println("viaggi.size(): " + viaggi.size());
+					System.out.println("Limiti inferiore e superiore: 1, 30");
+					int randomIndex = ThreadLocalRandom.current().nextInt(viaggi.size());
+
+					System.out.println("Random index: " + randomIndex);
+
+					Prenotazione prenotazione = new Prenotazione(viaggioRandom, dataPrenotazione, clienteRandom,
+							dataPartenza);
 					prenotazionerepo.save(prenotazione);
-
 				} catch (Exception e) {
 					System.out.println(e);
 				}
 			}
 		}
 	}
+
 }
 
 //		

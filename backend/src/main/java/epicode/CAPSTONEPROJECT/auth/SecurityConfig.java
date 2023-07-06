@@ -32,7 +32,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/recensioni/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/roles/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/prenotazioni/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/destinazioni/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/viaggi/**").authenticated());
 		// http.authorizeHttpRequests(auth ->
 		// auth.requestMatchers("/users/**").hasRole("ADMIN"));
 		// http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,

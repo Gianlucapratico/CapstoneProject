@@ -1,5 +1,6 @@
 package epicode.CAPSTONEPROJECT.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,10 +19,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Destinazione {
+public class Viaggio {
 	@Id
 	@GeneratedValue
 	private UUID id;
+	private LocalDate dataPartenza;
+	private LocalDate dataArrivo;
+	private String descrizione;
+	private Double prezzo;
 
 	@Column(name = "citta")
 	private String citta;
@@ -29,11 +34,16 @@ public class Destinazione {
 	@Column(name = "stato")
 	private String stato;
 	@JsonIgnore
-	@OneToMany(mappedBy = "destinazione")
+	@OneToMany(mappedBy = "viaggio")
 	private List<Prenotazione> prenotazioni;
 
-	public Destinazione(String citta, String stato) {
+	public Viaggio(String citta, String stato, LocalDate dataPartenza, LocalDate dataArrivo, String descrizione,
+			Double prezzo) {
 		this.citta = citta;
 		this.stato = stato;
+		this.dataPartenza = dataPartenza;
+		this.dataArrivo = dataArrivo;
+		this.descrizione = descrizione;
+		this.prezzo = prezzo;
 	}
 }

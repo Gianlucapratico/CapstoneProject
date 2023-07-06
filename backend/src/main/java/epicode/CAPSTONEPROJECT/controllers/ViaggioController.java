@@ -16,44 +16,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import epicode.CAPSTONEPROJECT.entities.Destinazione;
-import epicode.CAPSTONEPROJECT.services.DestinazioneService;
+import epicode.CAPSTONEPROJECT.entities.Viaggio;
+import epicode.CAPSTONEPROJECT.services.ViaggioService;
 
 @RestController
-@RequestMapping("/api/destinazioni")
-public class DestinazioneController {
+@RequestMapping("/api/viaggi")
+public class ViaggioController {
 	@Autowired
-	private DestinazioneService destinazioneService;
+	private ViaggioService viaggioService;
 
 	@GetMapping("")
-	public Page<Destinazione> getAllDestinazioni(@RequestParam(defaultValue = "0") int page,
+	public Page<Viaggio> getAllViaggi(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "citta") String sortBy) {
 
-		return destinazioneService.findAll(page, size, sortBy);
+		return viaggioService.findAll(page, size, sortBy);
 	}
 
 	@GetMapping("/{id}")
-	public Destinazione getDestinazioneById(@PathVariable UUID id) {
-		return destinazioneService.findById(id);
+	public Viaggio getViaggioById(@PathVariable UUID id) {
+		return viaggioService.findById(id);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Destinazione createDestinazione(@RequestBody Destinazione destinazione) {
-		return destinazioneService.create(destinazione);
+	public Viaggio createViaggio(@RequestBody Viaggio viaggio) {
+		return viaggioService.create(viaggio);
 	}
 
 	@PutMapping("/{id}")
 
-	public Destinazione updateDestinazione(@PathVariable UUID id, @RequestBody Destinazione destinazione) {
-		return destinazioneService.update(id, destinazione);
+	public Viaggio updateViaggio(@PathVariable UUID id, @RequestBody Viaggio viaggio) {
+		return viaggioService.update(id, viaggio);
 
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteDestinazione(@PathVariable UUID id) {
+	public void deleteViaggio(@PathVariable UUID id) {
 
-		destinazioneService.delete(id);
+		viaggioService.delete(id);
 	}
 }

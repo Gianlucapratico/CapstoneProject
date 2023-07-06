@@ -21,8 +21,8 @@ public class PrenotazioneService {
 
 	// ***** CREATE *****
 	public Prenotazione create(Prenotazione p) {
-		Prenotazione newPrenotazione = new Prenotazione(p.getDestinazione(), p.getDataPrenotazione(), p.getCliente(),
-				p.getDataPartenza(), p.getDataArrivo(), p.getRecensione());
+		Prenotazione newPrenotazione = new Prenotazione(p.getViaggio(), p.getDataPrenotazione(), p.getCliente(),
+				p.getRecensione());
 
 		return prenotazioneRepo.save(newPrenotazione);
 
@@ -64,9 +64,9 @@ public class PrenotazioneService {
 
 		prenotazioneFound.setDataPrenotazione(p.getDataPrenotazione());
 		prenotazioneFound.setCliente(p.getCliente());
-		prenotazioneFound.setDestinazione(p.getDestinazione());
-		prenotazioneFound.setDataPartenza(p.getDataPartenza());
-		prenotazioneFound.setDataArrivo(p.getDataArrivo());
+		prenotazioneFound.setViaggio(p.getViaggio());
+		prenotazioneFound.setDataPrenotazione(p.getDataPrenotazione());
+		prenotazioneFound.setCliente(p.getCliente());
 		prenotazioneFound.setRecensione(p.getRecensione());
 
 		return prenotazioneRepo.save(prenotazioneFound);
