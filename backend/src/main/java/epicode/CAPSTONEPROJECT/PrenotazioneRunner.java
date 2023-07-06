@@ -40,6 +40,7 @@ public class PrenotazioneRunner implements CommandLineRunner {
 	public void run(String... args) {
 		Faker faker = new Faker(new Locale("it"));
 		Random random = new Random();
+
 		if (prenotazionerepo.count() == 0) {
 			for (int i = 0; i < 20; i++) {
 				try {

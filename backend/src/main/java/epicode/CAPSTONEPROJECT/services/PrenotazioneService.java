@@ -9,20 +9,37 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import epicode.CAPSTONEPROJECT.entities.Cliente;
 import epicode.CAPSTONEPROJECT.entities.Prenotazione;
+import epicode.CAPSTONEPROJECT.entities.Viaggio;
 import epicode.CAPSTONEPROJECT.exceptions.NotFoundException;
+import epicode.CAPSTONEPROJECT.repositories.ClienteRepository;
 import epicode.CAPSTONEPROJECT.repositories.PrenotazioneRepository;
+import epicode.CAPSTONEPROJECT.repositories.ViaggioRepository;
 
 @Service
 public class PrenotazioneService {
 
 	@Autowired
 	PrenotazioneRepository prenotazioneRepo;
+	@Autowired
+	ClienteRepository clienteRepo;
+	@Autowired
+	ViaggioRepository viaggioRepo;
 
 	// ***** CREATE *****
 	public Prenotazione create(Prenotazione p) {
-		Prenotazione newPrenotazione = new Prenotazione(p.getViaggio(), p.getDataPrenotazione(), p.getCliente(),
-				p.getRecensione());
+		Viaggio viaggio = new Viaggio(p.getViaggio().getCitta(), p.getViaggio().getStato(),
+				p.getViaggio().getDataPartenza(), p.getViaggio().getDataArrivo(), p.getViaggio().getDescrizione(),
+				p.getViaggio().getPrezzo());
+		viaggioRepo.save(viaggio);
+
+		Cliente cliente = new Cliente(p.getCliente().getNome(), p.getCliente().getTelefono(), p.getCliente().getEmail(),
+				p.getCliente().getCognome());
+		clienteRepo.save(cliente);
+//		Prenotazione newPrenotazione = new Prenotazione(p.getViaggio(), p.getDataPrenotazione(), p.getCliente(),
+//				p.getRecensione());
+		Prenotazione newPrenotazione = new Prenotazione(viaggio, p.getDataPrenotazione(), cliente, p.getRecensione());
 
 		return prenotazioneRepo.save(newPrenotazione);
 
@@ -63,7 +80,16 @@ public class PrenotazioneService {
 		Prenotazione prenotazioneFound = this.findById(prenotazioneId);
 
 		prenotazioneFound.setDataPrenotazione(p.getDataPrenotazione());
-		prenotazioneFound.setCliente(p.getCliente());
+//		prenotazioneFound.setCliente(p.getCliente().getNome(), p.getCliente().getTelefono(), p.getCliente().getEmail(),
+//				p.getCliente().getCognome());
+		Cliente cliente = prenotazioneFound.getCliente();
+		cliente.setNome(p.getCliente().getNome());
+		cliente.setTelefono(p.getCliente().getTelefono());
+		cliente.setEmail(p.getCliente().getEmail());
+		cliente.setCognome(p.getCliente().getCognome());
+		prenotazioneFound.setCliente(cliente);
+
+//		prenotazioneFound.setCliente(p.getCliente());
 		prenotazioneFound.setViaggio(p.getViaggio());
 		prenotazioneFound.setDataPrenotazione(p.getDataPrenotazione());
 		prenotazioneFound.setCliente(p.getCliente());
