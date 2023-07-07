@@ -28,9 +28,8 @@ public class UsersService {
 
 	public User create(UserCreatePayload u) {
 		usersRepo.findByEmail(u.getEmail()).ifPresent(user -> {
-			throw new BadRequestException("Email " + user.getEmail() + " already in use!");
+			throw new BadRequestException("Email" + user.getEmail() + "already in use!");
 		});
-
 		User newUser = new User(u.getNome(), u.getCognome(), u.getUsername(), u.getEmail(), u.getPassword());
 
 		Role roleDefault = roleRepo.findByNome("USER")
@@ -57,18 +56,18 @@ public class UsersService {
 	}
 
 	public User findById(UUID id) throws NotFoundException {
-		return usersRepo.findById(id).orElseThrow(() -> new NotFoundException("Utete con Id:" + id + "non trovato!!"));
+		return usersRepo.findById(id).orElseThrow(() -> new NotFoundException("Utente con Id:" + id + "non trovato!!"));
 
 	}
 
 	public User findByEmail(String email) throws NotFoundException {
 		return usersRepo.findByEmail(email)
-				.orElseThrow(() -> new NotFoundException("Utete con email:" + email + "non trovato!!"));
+				.orElseThrow(() -> new NotFoundException("Utente con email:" + email + "non trovato!!"));
 	}
 
 	public User findByUsername(String username) throws NotFoundException {
 		return usersRepo.findByUsername(username)
-				.orElseThrow(() -> new NotFoundException("Utete:" + username + "non trovato!!"));
+				.orElseThrow(() -> new NotFoundException("Utente:" + username + "non trovato!!"));
 	}
 
 	public User findByIdAndUpdate(UUID id, UserCreatePayload u) throws NotFoundException {

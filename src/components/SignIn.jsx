@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [name, setName] = useState("");
@@ -8,6 +9,8 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [alert, setAlert] = useState(null);
   const [emailError, setEmailError] = useState("");
+  const navigate = useNavigate();
+  const [redirect, setRedirect] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -44,12 +47,26 @@ const SignIn = () => {
       if (response.ok) {
         // Registrazione avvenuta con successo
         setAlert("Registrazione avvenuta con successo");
+        setRedirect(true); // Imposta il valore di "redirect" a true
+
         setEmailError("");
         // Effettua eventuali azioni aggiuntive o reindirizzamenti
       } else {
         // Errore nella registrazione
         const errorData = await response.json();
         if (errorData && errorData.errors) {
+          const errorMessage = Object.values(errorData.errors).join(". ");
+          setAlert(`Errore durante la registrazione: ${errorMessage}`);
+        }
+
+        if (
+          errorData &&
+          errorData.message &&
+          errorData.message.includes("Email already in use!")
+        ) {
+          const errorMessage = `L'indirizzo email ${email} è già in uso`;
+          setAlert(errorMessage);
+        } else if (errorData && errorData.errors) {
           const errorMessage = Object.values(errorData.errors).join(". ");
           setAlert(`Errore durante la registrazione: ${errorMessage}`);
         } else {
@@ -61,6 +78,9 @@ const SignIn = () => {
       setAlert("Si è verificato un errore durante la registrazione");
     }
   };
+  if (redirect) {
+    navigate("/login"); // Naviga alla pagina di login
+  }
 
   return (
     <div className="contact d-flex justify-content-center align-items-center">
