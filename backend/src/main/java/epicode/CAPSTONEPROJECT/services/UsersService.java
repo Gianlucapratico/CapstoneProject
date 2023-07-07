@@ -57,7 +57,7 @@ public class UsersService {
 	}
 
 	public User findById(UUID id) throws NotFoundException {
-		return usersRepo.findById(id).orElseThrow(() -> new NotFoundException("Utente con Id:" + id + "non trovato!!"));
+		return usersRepo.findById(id).orElseThrow(() -> new NotFoundException("Utete con Id:" + id + "non trovato!!"));
 
 	}
 
@@ -68,7 +68,7 @@ public class UsersService {
 
 	public User findByUsername(String username) throws NotFoundException {
 		return usersRepo.findByUsername(username)
-				.orElseThrow(() -> new NotFoundException("Utente:" + username + "non trovato!!"));
+				.orElseThrow(() -> new NotFoundException("Utete:" + username + "non trovato!!"));
 	}
 
 	public User findByIdAndUpdate(UUID id, UserCreatePayload u) throws NotFoundException {
