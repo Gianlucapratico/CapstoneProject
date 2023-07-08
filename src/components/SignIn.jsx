@@ -58,7 +58,7 @@ const SignIn = () => {
           const errorMessage = Object.values(errorData.errors).join(". ");
           setAlert(`Errore durante la registrazione: ${errorMessage}`);
         }
-
+        //if errorMessage == ("Email already in use!")
         if (
           errorData &&
           errorData.message &&

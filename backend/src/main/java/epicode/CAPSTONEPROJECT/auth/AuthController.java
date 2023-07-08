@@ -28,8 +28,8 @@ public class AuthController {
 	@Autowired
 	private PasswordEncoder bcrypt;
 
-	//@Autowired
-	//RoleRepository roleRepo;
+	// @Autowired
+	// RoleRepository roleRepo;
 
 	@PostMapping("/register")
 	public ResponseEntity<User> register(@RequestBody @Validated UserCreatePayload body) {
@@ -42,19 +42,22 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<AuthenticationSuccessfullPayload> login(@RequestBody UserLoginPayload body)
-			throws NotFoundException {
+	public ResponseEntity<?> login(@RequestBody UserLoginPayload body) {
+		try {
+			User user = usersService.findByUsername(body.getUsername());
+			String plainPW = body.getPassword();
+			String hashedPW = user.getPassword();
 
-		User user = usersService.findByUsername(body.getUsername());
+			if (!bcrypt.matches(plainPW, hashedPW)) {
+				throw new UnauthorizedException("Credenziali non valide");
+			}
 
-		String plainPW = body.getPassword();
-		String hashedPW = user.getPassword();
-
-		if (!bcrypt.matches(plainPW, hashedPW))
-			throw new UnauthorizedException("Credenziali non valide");
-
-		String token = JWTTools.createToken(user);
-		return new ResponseEntity<>(new AuthenticationSuccessfullPayload(token), HttpStatus.OK);
+			String token = JWTTools.createToken(user);
+			return ResponseEntity.ok(new AuthenticationSuccessfullPayload(token));
+		} catch (NotFoundException e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utente non trovato");
+		} catch (UnauthorizedException e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username o password errati");
+		}
 	}
-
 }

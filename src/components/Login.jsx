@@ -6,9 +6,16 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(null);
+  const [alertType, setAlertType] = useState(""); // Aggiunta variabile di stato per il tipo di alert
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    if (!username || !password) {
+      setAlert("Devi inserire tutti i campi"); // Imposta l'alert per i campi mancanti
+      setAlertType("alert-danger"); // Imposta il tipo di alert a rosso
+      return;
+    }
 
     const userData = {
       username,
@@ -29,22 +36,25 @@ const Login = () => {
       if (response.ok) {
         // Login avvenuto con successo
         setAlert("Login avvenuto con successo");
+        setAlertType("alert-success"); // Imposta il tipo di alert a verde
         navigate("/"); // Naviga alla pagina Home
 
         // Effettua eventuali azioni aggiuntive o reindirizzamenti
       } else {
-        const errorData = await response.json();
-        if (errorData.message === "User not found") {
+        const errorText = await response.text(); // Ottieni il testo dell'errore dalla risposta
+        if (errorText === "Utente non trovato") {
           setAlert("Utente non trovato");
-        } else if (errorData.message === "Invalid password") {
-          setAlert("Password errata");
+        } else if (errorText === "Username o password errati") {
+          setAlert("Username o password errati");
         } else {
           setAlert("Errore durante il login");
         }
+        setAlertType("alert-danger"); // Imposta il tipo di alert a rosso
       }
     } catch (error) {
       console.error("Errore durante la richiesta di login:", error);
       setAlert("Si è verificato un errore durante il login");
+      setAlertType("alert-danger"); // Imposta il tipo di alert a rosso
     }
   };
 
@@ -54,9 +64,7 @@ const Login = () => {
         <div className="container">
           {alert && (
             <div
-              className={`alert ${
-                alert.startsWith("Errore") ? "alert-danger" : "alert-success"
-              } d-flex justify-content-center align-items-center`}
+              className={`alert ${alertType} d-flex justify-content-center align-items-center`}
               role="alert"
             >
               <span>{alert}</span>
@@ -105,5 +113,4 @@ const Login = () => {
     </>
   );
 };
-
 export default Login;
