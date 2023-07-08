@@ -49,14 +49,14 @@ const SignIn = () => {
 
     const endpointURL = "http://localhost:3001/auth/register";
     const token =
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHaWFubHVjYSIsImlhdCI6MTY4ODcxNzA4NSwiZXhwIjoxNjg5MzIxODg1fQ.31BgOCaLlYehrd-RsBsV-LgNrfecgQLQbVa0QZLrrNc";
+      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHaWFubHVjYSIsImlhdCI6MTY4ODgyMjE3MCwiZXhwIjoxNjg5NDI2OTcwfQ.qQS4IU5CmF18C0kjI6ODouJH1VXXGHLu5SAWd1JZrmE";
 
     try {
       const response = await fetch(endpointURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer" + token,
         },
         body: JSON.stringify(userData),
       });
@@ -176,7 +176,7 @@ const SignIn = () => {
                   )}
                 </div>
 
-                <div className="col-md-12">
+                <div className="col-md-12 d-flex justify-content-end">
                   <button className="send_btn" type="submit">
                     Send
                   </button>

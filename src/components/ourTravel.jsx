@@ -1,4 +1,13 @@
+import React, { useState } from "react";
+import ViaggioDetail from "./ViaggioDetail";
+import ParentComponent from "./ParentComponent";
+
 const OurTravel = () => {
+  const [selectedViaggio, setSelectedViaggio] = useState(null);
+
+  const handleViaggioClick = (viaggioId) => {
+    setSelectedViaggio(viaggioId);
+  };
   return (
     <div className="our_room">
       <div className="container">
@@ -12,7 +21,11 @@ const OurTravel = () => {
         </div>
         <div className="row">
           <div className="col-md-4 col-sm-6">
-            <div id="serv_hover" className="room">
+            <div
+              id="serv_hover"
+              className="room"
+              onClick={() => handleViaggioClick(1)}
+            >
               <div className="room_img">
                 <figure>
                   <img src={require("../images/room1.jpg")} alt="#" />
@@ -28,7 +41,11 @@ const OurTravel = () => {
             </div>
           </div>
           <div className="col-md-4 col-sm-6">
-            <div id="serv_hover" className="room">
+            <div
+              id="serv_hover"
+              className="room"
+              onClick={() => handleViaggioClick(2)}
+            >
               <div className="room_img">
                 <figure>
                   <img src={require("../images/room2.jpg")} alt="#" />
@@ -44,7 +61,11 @@ const OurTravel = () => {
             </div>
           </div>
           <div className="col-md-4 col-sm-6">
-            <div id="serv_hover" className="room">
+            <div
+              id="serv_hover"
+              className="room"
+              onClick={() => handleViaggioClick(3)}
+            >
               <div className="room_img">
                 <figure>
                   <img src={require("../images/room3.jpg")} alt="#" />
@@ -60,7 +81,11 @@ const OurTravel = () => {
             </div>
           </div>
           <div className="col-md-4 col-sm-6">
-            <div id="serv_hover" className="room">
+            <div
+              id="serv_hover"
+              className="room"
+              onClick={() => handleViaggioClick(4)}
+            >
               <div className="room_img">
                 <figure>
                   <img src={require("../images/room4.jpg")} alt="#" />
@@ -76,7 +101,11 @@ const OurTravel = () => {
             </div>
           </div>
           <div className="col-md-4 col-sm-6">
-            <div id="serv_hover" className="room">
+            <div
+              id="serv_hover"
+              className="room"
+              onClick={() => handleViaggioClick(5)}
+            >
               <div className="room_img">
                 <figure>
                   <img src={require("../images/room5.jpg")} alt="#" />
@@ -92,7 +121,11 @@ const OurTravel = () => {
             </div>
           </div>
           <div className="col-md-4 col-sm-6">
-            <div id="serv_hover" className="room">
+            <div
+              id="serv_hover"
+              className="room"
+              onClick={() => handleViaggioClick(6)}
+            >
               <div className="room_img">
                 <figure>
                   <img src={require("../images/room6.jpg")} alt="#" />
@@ -109,6 +142,7 @@ const OurTravel = () => {
           </div>
         </div>
       </div>
+      {selectedViaggio && <ParentComponent viaggioId={selectedViaggio} />}
     </div>
   );
 };

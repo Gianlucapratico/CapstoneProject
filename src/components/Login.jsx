@@ -99,7 +99,7 @@ const Login = () => {
                     />
                   </div>
 
-                  <div className="col-md-12">
+                  <div className="col-md-12 d-flex justify-content-end">
                     <button className="send_btn" type="submit">
                       Send
                     </button>
