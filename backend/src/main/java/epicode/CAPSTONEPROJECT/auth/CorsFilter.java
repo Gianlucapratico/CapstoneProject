@@ -1,0 +1,46 @@
+package epicode.CAPSTONEPROJECT.auth;
+
+import java.io.IOException;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class CorsFilter extends OncePerRequestFilter {
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+		response.setHeader("Access-Control-Allow-Max-Age", "600");
+
+		if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
+			response.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			filterChain.doFilter(request, response);
+		}
+	}
+}
+//@Configuration
+//public class CorsConfig {
+//
+//	@Bean
+//	public CorsFilter corsFilter() {
+//		CorsConfiguration corsConfig = new CorsConfiguration();
+//		corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Imposta l'origine consentita per il tuo
+//																				// frontend
+//		corsConfig.addAllowedHeader("*");
+//		corsConfig.addAllowedMethod("*");
+//
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		source.registerCorsConfiguration("/**", corsConfig);
+//
+//		return new CorsFilter(source);
+//	}
+//}

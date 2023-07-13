@@ -14,10 +14,6 @@ const About = () => {
                 websites, and stock designs. Use our generator to get your own,
                 or read on for the authoritative history of lorem ipsum.{" "}
               </p>
-              <a className="read_more" href="Javascript:void(0)">
-                {" "}
-                Read More
-              </a>
             </div>
           </div>
           <div className="col-md-7">

@@ -21,7 +21,7 @@ import epicode.CAPSTONEPROJECT.entities.Viaggio;
 import epicode.CAPSTONEPROJECT.services.ViaggioService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/viaggi")
 public class ViaggioController {
 	@Autowired

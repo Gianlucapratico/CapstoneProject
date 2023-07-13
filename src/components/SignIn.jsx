@@ -42,21 +42,20 @@ const SignIn = () => {
     const userData = {
       nome: name,
       cognome: surname,
-      username,
-      email,
-      password,
+      username: username,
+      email: email,
+      password: password,
     };
 
     const endpointURL = "http://localhost:3001/auth/register";
-    const token =
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHaWFubHVjYSIsImlhdCI6MTY4ODgyMjE3MCwiZXhwIjoxNjg5NDI2OTcwfQ.qQS4IU5CmF18C0kjI6ODouJH1VXXGHLu5SAWd1JZrmE";
-
+    /* const token =
+      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHaWFubHVjYSIsImlhdCI6MTY4ODk5OTU4NSwiZXhwIjoxNjg5NjA0Mzg1fQ.-Jak3GbkAlUbhhD6uJ6FnrKOWYh7ZJBBUwZCWQ81LU0";
+*/
     try {
       const response = await fetch(endpointURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer" + token,
         },
         body: JSON.stringify(userData),
       });
