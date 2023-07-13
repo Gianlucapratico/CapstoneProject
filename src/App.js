@@ -10,7 +10,6 @@ import "./js/custom.js";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
-
 import OurTravel from "./components/OurTravel";
 
 function App() {

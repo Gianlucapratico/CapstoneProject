@@ -58,7 +58,11 @@ const OurTravel = () => {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src={generateRandomImageUrl()}></img>
+                    <img
+                      src={generateRandomImageUrl()}
+                      width={200}
+                      height={300}
+                    ></img>
                   </figure>
                 </div>
                 <div className="bed_room">
