@@ -27,6 +27,7 @@ public class Viaggio {
 	private LocalDate dataArrivo;
 	private String descrizione;
 	private Double prezzo;
+	private String urlImg;
 
 	@Column(name = "citta")
 	private String citta;
@@ -38,12 +39,13 @@ public class Viaggio {
 	private List<Prenotazione> prenotazioni;
 
 	public Viaggio(String citta, String stato, LocalDate dataPartenza, LocalDate dataArrivo, String descrizione,
-			Double prezzo) {
+			Double prezzo, String urlImg) {
 		this.citta = citta;
 		this.stato = stato;
 		this.dataPartenza = dataPartenza;
 		this.dataArrivo = dataArrivo;
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
+		this.urlImg = urlImg;
 	}
 }

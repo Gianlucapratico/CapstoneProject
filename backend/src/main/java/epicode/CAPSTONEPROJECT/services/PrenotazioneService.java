@@ -31,7 +31,7 @@ public class PrenotazioneService {
 	public Prenotazione create(Prenotazione p) {
 		Viaggio viaggio = new Viaggio(p.getViaggio().getCitta(), p.getViaggio().getStato(),
 				p.getViaggio().getDataPartenza(), p.getViaggio().getDataArrivo(), p.getViaggio().getDescrizione(),
-				p.getViaggio().getPrezzo());
+				p.getViaggio().getPrezzo(), p.getViaggio().getUrlImg());
 		viaggioRepo.save(viaggio);
 
 		Cliente cliente = new Cliente(p.getCliente().getNome(), p.getCliente().getTelefono(), p.getCliente().getEmail(),

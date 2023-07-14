@@ -18,8 +18,12 @@ const Header = () => {
               <div className="full">
                 <div className="center-desk">
                   <div className="logo">
-                    <a href="index.html">
-                      <img src={require("../images/logo.png")} alt="#" />
+                    <a href="/">
+                      <img
+                        src={require("../images/files.jpg")}
+                        style={{ width: "150px", height: "71px" }}
+                        alt="#"
+                      />
                     </a>
                   </div>
                 </div>

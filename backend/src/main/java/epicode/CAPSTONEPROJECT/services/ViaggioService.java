@@ -21,7 +21,7 @@ public class ViaggioService {
 	// ***** CREATE *****
 	public Viaggio create(Viaggio v) {
 		Viaggio newViaggio = new Viaggio(v.getCitta(), v.getStato(), v.getDataPartenza(), v.getDataArrivo(),
-				v.getDescrizione(), v.getPrezzo());
+				v.getDescrizione(), v.getPrezzo(), v.getUrlImg());
 
 		return viaggioRepo.save(newViaggio);
 	}
@@ -54,6 +54,7 @@ public class ViaggioService {
 		viaggioFound.setDataArrivo(d.getDataArrivo());
 		viaggioFound.setDescrizione(d.getDescrizione());
 		viaggioFound.setPrezzo(d.getPrezzo());
+		viaggioFound.setUrlImg(d.getUrlImg());
 
 		return viaggioRepo.save(viaggioFound);
 	}
