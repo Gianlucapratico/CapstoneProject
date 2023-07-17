@@ -3,7 +3,6 @@ package epicode.CAPSTONEPROJECT.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -36,7 +35,6 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/roles/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/prenotazioni/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/viaggi/**").authenticated());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET, "/api/viaggi/**").permitAll());
 
 		// http.authorizeHttpRequests(auth ->
 		// auth.requestMatchers("/users/**").hasRole("ADMIN"));

@@ -4,33 +4,33 @@ import { Link } from "react-router-dom";
 
 const OurTravel = () => {
   const [viaggi, setViaggi] = useState([]);
+  const [token, setToken] = useState("");
   const [errore, setErrore] = useState("");
   const [selectedViaggio, setSelectedViaggio] = useState(null);
 
   const selectViaggio = (viaggio) => {
-    console.log("Viaggio:", viaggio);
-
     setSelectedViaggio(viaggio);
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const fetchViaggi = async () => {
       try {
         const response = await fetch("http://localhost:3001/api/viaggi", {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHaWFubHVjYSIsImlhdCI6MTY4OTMxODA5MiwiZXhwIjoxNjg5OTIyODkyfQ.T-UTgM3vkrQcJZf2rBSuplm2xGpFJvEBRAYrQJsZEwQ",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         });
+
         if (response.ok) {
           const data = await response.json();
           setViaggi(data.content);
-          console.log("Dati viaggi:", data.content);
         } else {
           throw new Error("Errore durante la richiesta dei viaggi");
         }
-      } catch (errore) {
-        console.error("Errore durante la richiesta dei viaggi:", errore);
+      } catch (error) {
+        console.error("Errore durante la richiesta dei viaggi:", error);
         setErrore("Si è verificato un errore durante il recupero dei viaggi.");
       }
     };
@@ -59,7 +59,9 @@ const OurTravel = () => {
                 <div id="serv_hover" className="room">
                   <div className="room_img">
                     <Link to={`/viaggiodetails/${viaggio.id}`}>
-                      <img src={viaggio.urlImg} alt={viaggio.citta} />
+                      <figure>
+                        <img src={viaggio.urlImg} alt={viaggio.citta} />
+                      </figure>
                     </Link>
                   </div>
                   <div className="bed_room">

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(null);
@@ -22,10 +24,8 @@ const Login = () => {
       password,
     };
 
-    const endpointURL = "http://localhost:3001/auth/login";
-
     try {
-      const response = await fetch(endpointURL, {
+      const response = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,10 +37,16 @@ const Login = () => {
         // Login avvenuto con successo
         setAlert("Login avvenuto con successo");
         setAlertType("alert-success"); // Imposta il tipo di alert a verde
-        navigate("/"); // Naviga alla pagina Home
+        const dataToken = await response.json();
+        setToken(dataToken.accessToken);
+        // Ottieni il token di autorizzazione dalla risposta
 
-        // Effettua eventuali azioni aggiuntive o reindirizzamenti
-      } else {
+        localStorage.setItem("username", username);
+        localStorage.setItem("token", dataToken.accessToken);
+        if (dataToken.accessToken) navigate("/");
+      }
+      // Effettua eventuali azioni aggiuntive o reindirizzamenti
+      else {
         const errorText = await response.text(); // Ottieni il testo dell'errore dalla risposta
         if (errorText === "Utente non trovato") {
           setAlert("Utente non trovato");

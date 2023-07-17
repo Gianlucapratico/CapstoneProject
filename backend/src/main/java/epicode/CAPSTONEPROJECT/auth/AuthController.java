@@ -30,6 +30,7 @@ public class AuthController {
 	UsersService usersService;
 	@Autowired
 	private UsersRepository usersRepo;
+	private JWTTools jwtTools;
 
 	@Autowired
 	private PasswordEncoder bcrypt;
@@ -100,7 +101,7 @@ public class AuthController {
 				throw new UnauthorizedException("Credenziali non valide");
 			}
 
-			String token = JWTTools.createToken(user);
+			String token = jwtTools.createToken(user);
 			return ResponseEntity.ok(new AuthenticationSuccessfullPayload(token));
 		} catch (NotFoundException e) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utente non trovato");

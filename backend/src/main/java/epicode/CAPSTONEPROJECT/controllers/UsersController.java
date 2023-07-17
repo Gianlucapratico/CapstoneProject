@@ -66,6 +66,11 @@ public class UsersController {
 		return usersService.findByIdAndUpdate(userId, body);
 	}
 
+	@GetMapping("/username/{username}")
+	public User getUsername(@PathVariable String username) throws Exception {
+		return usersService.findByUsername(username);
+	}
+
 	@DeleteMapping("/{userId}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

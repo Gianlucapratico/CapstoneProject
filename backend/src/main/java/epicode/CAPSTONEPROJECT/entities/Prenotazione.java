@@ -24,8 +24,8 @@ public class Prenotazione {
 	private LocalDate dataPrenotazione;
 
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "viaggio_id")
@@ -34,17 +34,17 @@ public class Prenotazione {
 	@OneToOne(mappedBy = "prenotazione")
 	private Recensione recensione;
 
-	public Prenotazione(Viaggio viaggio, LocalDate dataPrenotazione, Cliente cliente, Recensione recensione) {
+	public Prenotazione(Viaggio viaggio, LocalDate dataPrenotazione, User user, Recensione recensione) {
 		this.viaggio = viaggio;
 		this.dataPrenotazione = dataPrenotazione;
-		this.cliente = cliente;
+		this.user = user;
 		this.recensione = recensione;
 	}
 
-	public Prenotazione(Viaggio viaggio, LocalDate dataPrenotazione, Cliente cliente, LocalDate dataArrivo) {
+	public Prenotazione(Viaggio viaggio, LocalDate dataPrenotazione, User user, LocalDate dataArrivo) {
 		this.viaggio = viaggio;
 		this.dataPrenotazione = dataPrenotazione;
-		this.cliente = cliente;
+		this.user = user;
 
 	}
 }

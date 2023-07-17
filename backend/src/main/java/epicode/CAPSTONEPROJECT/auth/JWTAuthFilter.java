@@ -30,7 +30,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
 		String authHeader = request.getHeader("Authorization");
 
-		if (authHeader == null || !authHeader.startsWith("Bearer"))
+		if (authHeader == null || !authHeader.startsWith("Bearer "))
 			throw new UnauthorizedException("Per favore aggiungi il token all'authorization header");
 
 		String accessToken = authHeader.substring(7);
