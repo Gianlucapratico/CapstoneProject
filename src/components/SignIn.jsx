@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
@@ -48,9 +48,7 @@ const SignIn = () => {
     };
 
     const endpointURL = "http://localhost:3001/auth/register";
-    /* const token =
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHaWFubHVjYSIsImlhdCI6MTY4ODk5OTU4NSwiZXhwIjoxNjg5NjA0Mzg1fQ.-Jak3GbkAlUbhhD6uJ6FnrKOWYh7ZJBBUwZCWQ81LU0";
-*/
+
     try {
       const response = await fetch(endpointURL, {
         method: "POST",
@@ -61,11 +59,11 @@ const SignIn = () => {
       });
 
       if (response.ok) {
-        setAlert(null); // Rimuovi l'alert precedente
+        const data = await response.json();
+
         setRedirect(true); // Imposta il valore di "redirect" a true
 
         setEmailError("");
-        // Effettua eventuali azioni aggiuntive o reindirizzamenti
       } else {
         const errorData = await response.json();
         if (
@@ -91,9 +89,11 @@ const SignIn = () => {
     return emailRegex.test(email);
   };
 
-  if (redirect) {
-    navigate("/login"); // Naviga alla pagina di login
-  }
+  useEffect(() => {
+    if (redirect) {
+      navigate("/login"); // Naviga alla pagina di login
+    }
+  }, [redirect, navigate]);
 
   return (
     <div className="contact d-flex justify-content-center align-items-center">
