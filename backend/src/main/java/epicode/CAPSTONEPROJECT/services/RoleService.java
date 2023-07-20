@@ -31,22 +31,17 @@ public class RoleService {
 		return roleRepo.save(newRuolo);
 	}
 
-	//***** READ BY ID *****
+	// ***** READ BY ID *****
 	public Role findById(UUID id) {
-		//Optional<Role> optionalRole = roleRepo.findById(id);
-		//return optionalRole.orElse(null);
+
 		return roleRepo.findById(id).orElseThrow(() -> new NotFoundException("RuoloId non trovato"));
 	}
-
-	//public List<Role> findAll() {
-	//	return roleRepo.findAll();
-	//}
 
 	public Role findByNome(String r) throws NotFoundException {
 		return roleRepo.findByNome(r).orElseThrow(() -> new NotFoundException("Ruolo con nome:" + r + "non trovato!!"));
 	}
 
-	//***** READ ALL *****
+	// ***** READ ALL *****
 	public Page<Role> find(int page, int size, String sortBy) {
 		if (size < 0)
 			size = 10;
@@ -58,19 +53,7 @@ public class RoleService {
 		return roleRepo.findAll(pageable);
 	}
 
-	//	public Optional<Role> findByUser(String user) {
-	//		return roleRepository.findByUser(user);
-	//	}
-	//
-	//	public Optional<Role> findByAdmin(String admin) {
-	//		return roleRepository.findByAdmin(admin);
-	//	}
-
-	//public Role create(Role role) {
-	//	return roleRepo.save(role);
-	//}
-
-	//***** READ BY ID AND UPDATE *****
+	// ***** READ BY ID AND UPDATE *****
 	public Role findByIdAndUpdate(UUID id, Role r) throws NotFoundException {
 		Role found = this.findById(id);
 		found.setId(id);
@@ -78,7 +61,7 @@ public class RoleService {
 		return roleRepo.save(found);
 	}
 
-	//***** DELETE BY ID *****
+	// ***** DELETE BY ID *****
 	public void deleteById(UUID id) {
 		Role roleFound = this.findById(id);
 		roleRepo.delete(roleFound);

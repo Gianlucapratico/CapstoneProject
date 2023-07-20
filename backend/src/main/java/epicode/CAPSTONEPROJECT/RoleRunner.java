@@ -13,11 +13,8 @@ import epicode.CAPSTONEPROJECT.repositories.RoleRepository;
 public class RoleRunner implements CommandLineRunner {
 
 	@Autowired
-	//RoleRepository roleRepo;
-	RoleRepository roleRepo;
 
-	//@Autowired
-	//UsersRepository usersRepo;
+	RoleRepository roleRepo;
 
 	@Override
 	public void run(String... args) throws Exception {

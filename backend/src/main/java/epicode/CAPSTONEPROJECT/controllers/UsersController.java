@@ -56,12 +56,7 @@ public class UsersController {
 
 	@PutMapping("/{userId}")
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public User updateUser(@PathVariable UUID userId, @RequestBody UserCreatePayload body) throws Exception { // => devo
-																												// forse
-																												// passare
-																												// User
-																												// e non
-																												// UserCreatePayload?
+	public User updateUser(@PathVariable UUID userId, @RequestBody UserCreatePayload body) throws Exception {
 		body.setPassword(bcrypt.encode(body.getPassword()));
 		return usersService.findByIdAndUpdate(userId, body);
 	}

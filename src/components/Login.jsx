@@ -43,7 +43,7 @@ const Login = () => {
 
         localStorage.setItem("username", username);
         localStorage.setItem("token", dataToken.accessToken);
-        if (dataToken.accessToken) navigate("/");
+        if (dataToken.accessToken) navigate("/ourtravel");
       }
       // Effettua eventuali azioni aggiuntive o reindirizzamenti
       else {
@@ -66,6 +66,17 @@ const Login = () => {
 
   return (
     <>
+      <div className="back_re">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title">
+                <h2>LOGIN</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="contact d-flex justify-content-center align-items-center">
         <div className="container">
           {alert && (

@@ -9,8 +9,5 @@ import epicode.CAPSTONEPROJECT.entities.Viaggio;
 
 @Repository
 public interface ViaggioRepository extends JpaRepository<Viaggio, UUID> {
-//	List<Destinazione> findByCitta(String citta);
-//
-//	List<Destinazione> findByStato(String stato);
 
 }

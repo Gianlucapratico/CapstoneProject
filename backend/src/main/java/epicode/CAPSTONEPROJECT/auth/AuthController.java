@@ -35,8 +35,6 @@ public class AuthController {
 	@Autowired
 	private PasswordEncoder bcrypt;
 
-	// @Autowired
-	// RoleRepository roleRepo;
 	private boolean isValidEmail(String email) {
 		// Utilizza espressioni regolari per la validazione dell'indirizzo email
 		String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -77,8 +75,6 @@ public class AuthController {
 			if (body.getPassword().length() < 5) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La password deve avere almeno 5 caratteri");
 			}
-
-			// Aggiungi altre logiche di validazione se necessario
 
 			body.setPassword(bcrypt.encode(body.getPassword()));
 			User createdUser = usersService.create(body);

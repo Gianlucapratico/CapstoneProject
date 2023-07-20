@@ -155,7 +155,7 @@ a,
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -449,12 +449,32 @@ button {
   color: #fff;
   transition: ease-in all 0.5s;
 }
+.read_more2 {
+  font-size: 17px;
+  background-color: white;
+  color: #141212;
+  padding: 8px 0px;
+  width: 100%;
+  max-width: 144px;
+  text-align: center;
+  display: inline-block;
+  transition: ease-in all 0.5s;
+  font-weight: 500;
+  border-radius: 30px;
+}
+
+.read_more2:hover {
+  background: #fe0000;
+  color: #fff;
+  transition: ease-in all 0.5s;
+}
 
 /** about section **/
 
 .about {
   background-color: #fff;
-  padding-top: 85px;
+  padding-top: 60px;
+  margin-bottom: 50px;
 }
 
 .about .titlepage {
@@ -498,9 +518,8 @@ button {
 /** our_room section **/
 
 .our_room {
-  background-color: #f4f5f7;
   padding: 60px 0 30px 0;
-  margin-top: 90px;
+  margin-top: 10px;
 }
 
 .our_room .titlepage {
@@ -539,10 +558,12 @@ button {
 
 .our_room .room .bed_room {
   padding: 33px 30px;
+  background-color: #1e2538;
+  color: white;
 }
 
 .our_room .room .bed_room h3 {
-  color: #121212;
+  color: white;
   font-size: 25px;
   line-height: 20px;
   font-weight: 500;
@@ -672,6 +693,7 @@ button {
 .contact {
   background: #fff;
   margin-top: 90px;
+  margin-bottom: 40px;
 }
 
 .main_form .contactus {
@@ -713,6 +735,7 @@ button {
   margin-top: 10px !important;
   font-weight: 500;
   border-radius: 50px;
+  margin-bottom: 50px;
 }
 
 .main_form .send_btn:hover {
@@ -739,9 +762,9 @@ button {
 /** footer **/
 
 .footer {
-  background: #0f1521;
-  margin-top: 90px;
-  padding-top: 60px;
+  background: #1e2538;
+
+  padding: 60px 0 50px;
   text-align: center;
 }
 
@@ -846,7 +869,7 @@ ul.link_menu li a:hover {
 }
 
 ul.social_icon {
-  padding-top: 24px;
+  padding-top: 5px;
   width: 100%;
   float: left;
   text-align: left;
@@ -854,6 +877,7 @@ ul.social_icon {
 
 ul.social_icon li {
   display: inline-block;
+  margin-right: 15px;
 }
 
 ul.social_icon li a {
@@ -862,7 +886,7 @@ ul.social_icon li a {
   justify-content: center;
   font-size: 27px;
   border-radius: 30px;
-  margin: 0 9px;
+
   color: #fff;
 }
 
@@ -871,7 +895,6 @@ ul.social_icon li a:hover {
 }
 
 .copyright {
-  margin-top: 60px;
   padding-bottom: 20px;
   background-color: #fff;
   border: #ff0909 solid 3px;
@@ -901,7 +924,7 @@ ul.social_icon li a:hover {
 
 /**  inner page css **/
 .back_re {
-  background-color: #0f1521;
+  background-color: #1e2538;
 }
 .back_re .title {
   text-align: center;
@@ -923,4 +946,29 @@ ul.social_icon li a:hover {
 }
 .inner_page .blog {
   margin-top: 90px;
+}
+
+.homeHeader {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  background-image: url("../images/Panorama.jpg");
+}
+.buttonWrapper {
+  display: flex;
+  gap: 20px;
+}
+.homeHeader-title {
+  font-size: 50px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+}
+.buttonWrapper button {
+  width: 140px;
 }

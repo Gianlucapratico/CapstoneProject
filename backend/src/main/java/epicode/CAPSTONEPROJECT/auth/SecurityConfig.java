@@ -12,16 +12,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@EnableWebSecurity
+
 @EnableMethodSecurity
 public class SecurityConfig {
 	@Autowired
 	JWTAuthFilter jwtAuthFilter;
 	@Autowired
 	CorsFilter corsFilter;
-
-	// @Autowired
-	// ExceptionHandlerFilter exceptionHandlerFilter;
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,16 +33,6 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/prenotazioni/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/viaggi/**").authenticated());
 
-		// http.authorizeHttpRequests(auth ->
-		// auth.requestMatchers("/users/**").hasRole("ADMIN"));
-		// http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,
-		// "/users/**").hasAuthority("USER"));
-		// http.authorizeHttpRequests(auth ->
-		// auth.requestMatchers("/users/**").hasAuthority("ADMIN"));
-		// http.authorizeHttpRequests(auth ->
-		// auth.requestMatchers("/users/**").hasRole("USER"));
-
-		// http.addFilterBefore(exceptionHandlerFilter, JWTAuthFilter.class);
 		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(corsFilter, JWTAuthFilter.class);
 

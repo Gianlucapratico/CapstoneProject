@@ -30,16 +30,6 @@ public class PrenotazioneService {
 	// ***** CREATE *****
 	public Prenotazione create(Prenotazione p) {
 
-//		Viaggio viaggio = new Viaggio(p.getViaggio().getCitta(), p.getViaggio().getStato(),
-//				p.getViaggio().getDataPartenza(), p.getViaggio().getDataArrivo(), p.getViaggio().getDescrizione(),
-//				p.getViaggio().getPrezzo(), p.getViaggio().getUrlImg());
-//		viaggioRepo.save(viaggio);
-//
-//		Cliente cliente = new Cliente(p.getCliente().getNome(), p.getCliente().getTelefono(), p.getCliente().getEmail(),
-//				p.getCliente().getCognome());
-//		clienteRepo.save(cliente);
-//		Prenotazione newPrenotazione = new Prenotazione(p.getViaggio(), p.getDataPrenotazione(), p.getCliente(),
-//				p.getRecensione());
 		User user = usersRepo.findById(p.getUser().getId())
 				.orElseThrow(() -> new NotFoundException("Utente non trovato con ID: " + p.getUser().getId()));
 		Prenotazione newPrenotazione = new Prenotazione();
@@ -50,18 +40,6 @@ public class PrenotazioneService {
 
 		return prenotazioneRepo.save(newPrenotazione);
 	}
-
-//	public List<Prenotazione> getPrenotazioniByDataPrenotazione(LocalDate dataPrenotazione) {
-//		return prenotazioneRepo.findByDataPrenotazione(dataPrenotazione);
-//	}
-//
-//	public List<Prenotazione> getPrenotazioniByDestinazione(Destinazione destinazione) {
-//		return prenotazioneRepo.findByDestinazione(destinazione);
-//	}
-//
-//	public List<Prenotazione> getPrenotazioniByCliente(Cliente cliente) {
-//		return prenotazioneRepo.findByCliente(cliente);
-//	}
 
 	// ***** READ *****
 	public Page<Prenotazione> findAll(int page, int size, String sortBy) {
@@ -86,16 +64,7 @@ public class PrenotazioneService {
 		Prenotazione prenotazioneFound = this.findById(prenotazioneId);
 
 		prenotazioneFound.setDataPrenotazione(p.getDataPrenotazione());
-//		prenotazioneFound.setCliente(p.getCliente().getNome(), p.getCliente().getTelefono(), p.getCliente().getEmail(),
-//				p.getCliente().getCognome());
-//		Cliente cliente = prenotazioneFound.getCliente();
-//		cliente.setNome(p.getCliente().getNome());
-//		cliente.setTelefono(p.getCliente().getTelefono());
-//		cliente.setEmail(p.getCliente().getEmail());
-//		cliente.setCognome(p.getCliente().getCognome());
-//		prenotazioneFound.setCliente(cliente);
 
-//		prenotazioneFound.setCliente(p.getCliente());
 		prenotazioneFound.setViaggio(p.getViaggio());
 		prenotazioneFound.setDataPrenotazione(p.getDataPrenotazione());
 		prenotazioneFound.setUser(p.getUser());

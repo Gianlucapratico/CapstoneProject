@@ -34,12 +34,6 @@ public class AdminRunner implements CommandLineRunner {
 	private static String email;
 	private static String password;
 
-	// private static int expiration;
-	// @Value("${spring.application.jwt.expirationindays}")
-	// public void setExpiration(String expirationInDays) {
-	// expiration = Integer.parseInt(expirationInDays) * 24 * 60 * 60 * 1000;
-	// }
-
 	// recupero i dati del superAdmin dal mio file privato
 	@Value("${user.admin.nome}")
 	public void setNome(String nome) {
@@ -78,10 +72,6 @@ public class AdminRunner implements CommandLineRunner {
 			Optional<Role> roleAdmin = roleRepo.findByNome("ADMIN");
 			userAdmin.getRoles().add(roleAdmin.get()); // => forse un if che controlla se non è vuoto o altro test?
 
-			// if (roleAdmin.isPresent()) {
-			// userAdmin.getRoles().add(roleAdmin.get());
-			// }
-
 			usersRepo.save(userAdmin);
 		}
 
@@ -89,8 +79,7 @@ public class AdminRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		// System.out.println(nome + cognome + username + email + password);
+
 		createUserAdmin();
 	}
 

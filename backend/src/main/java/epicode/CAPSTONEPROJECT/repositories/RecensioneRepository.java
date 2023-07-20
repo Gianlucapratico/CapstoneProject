@@ -9,5 +9,5 @@ import epicode.CAPSTONEPROJECT.entities.Recensione;
 
 @Repository
 public interface RecensioneRepository extends JpaRepository<Recensione, UUID> {
-	// Eventuali metodi personalizzati per le operazioni sulle recensioni
+
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 const ViaggioDetails = () => {
   const { id } = useParams();
@@ -8,6 +9,7 @@ const ViaggioDetails = () => {
   const token = localStorage.getItem("token");
   const [user, setUser] = useState(null);
   const username = localStorage.getItem("username");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchViaggioDetails = async () => {
@@ -21,7 +23,6 @@ const ViaggioDetails = () => {
         if (response.ok) {
           const data = await response.json();
           setViaggio(data);
-          console.log(data);
         } else {
           throw new Error(
             "Errore durante il recupero dei dettagli del viaggio"
@@ -49,7 +50,6 @@ const ViaggioDetails = () => {
         if (response.ok) {
           const data = await response.json();
           setUser(data);
-          console.log(data);
         } else {
           throw new Error(
             "Errore durante il recupero dei dettagli dell'utente"
@@ -68,6 +68,7 @@ const ViaggioDetails = () => {
   }, [id, token, username]);
 
   const handlePrenota = async () => {
+    setError(null);
     if (!viaggio || !user) {
       console.error("Viaggio o utente non valido");
       return;
@@ -107,7 +108,6 @@ const ViaggioDetails = () => {
 
       if (response.ok) {
         setPrenotato(true);
-        console.log("Prenotazione effettuata con successo!");
       } else {
         throw new Error("Errore durante la prenotazione del viaggio");
       }
@@ -123,24 +123,36 @@ const ViaggioDetails = () => {
   return (
     <div className="about">
       <div className="container">
+        {/* Centering container for the Alert */}
+        <div className="d-flex justify-content-center  mb-5">
+          {/* Alert */}
+          {prenotato && (
+            <Alert variant="success">
+              Prenotazione effettuata con successo!
+            </Alert>
+          )}
+          {error && <Alert variant="danger">{error}</Alert>}
+        </div>
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-5 order-md-2">
             <div className="titlepage">
               <h2>{viaggio.citta}</h2>
               <p>{viaggio.stato}</p>
               <p>{viaggio.descrizione}</p>
               <p> data di partenza: {viaggio.dataPartenza}</p>
 
-              <p>{viaggio.prezzo}</p>
+              <p>{viaggio.prezzo}€</p>
+              <Link to="/ourtravel" className="read_more mr-3 mb-3">
+                Indietro
+              </Link>
               {!prenotato && (
                 <button className="read_more" onClick={handlePrenota}>
                   Prenota
                 </button>
               )}
-              {prenotato && <p>Prenotazione effettuata con successo!</p>}
             </div>
           </div>
-          <div className="col-md-7">
+          <div className="col-md-7 order-md-1">
             <div className="about_img">
               <figure>
                 <img src={viaggio.urlImg} alt={viaggio.citta} />

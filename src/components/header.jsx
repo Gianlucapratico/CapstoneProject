@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
 
 const Header = () => {
   const location = useLocation();
@@ -10,6 +11,11 @@ const Header = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const storage = $("body");
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleToggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -34,7 +40,6 @@ const Header = () => {
         if (response.ok) {
           const data = await response.json();
           setUser(data);
-          console.log(data);
         } else {
           throw new Error(
             "Errore durante il recupero dei dettagli dell'utente"
@@ -53,6 +58,9 @@ const Header = () => {
 
   const handleOurTravelClick = () => {
     navigate("/ourtravel");
+  };
+  const handleUsernameClick = () => {
+    navigate("/myprenotations"); // Naviga alla rotta di MyPrenotations
   };
 
   const logout = () => {
@@ -73,8 +81,8 @@ const Header = () => {
                     <a href="/">
                       <img
                         src={require("../images/files.jpg")}
-                        style={{ width: "150px", height: "71px" }}
-                        alt="#"
+                        style={{ width: "100px", height: "50px" }}
+                        alt="logo"
                       />
                     </a>
                   </div>
@@ -82,57 +90,59 @@ const Header = () => {
               </div>
             </div>
             <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-              <nav className="navigation navbar navbar-expand-md navbar-dark ">
+              <nav
+                className={`navigation navbar navbar-expand-md navbar-dark ${
+                  isNavOpen ? "show" : ""
+                }`}
+              >
                 <button
                   className="navbar-toggler"
                   type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarsExample04"
-                  aria-controls="navbarsExample04"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+                  onClick={handleToggleNav} // Usa la funzione di toggle qui
                 >
                   <span className="navbar-toggler-icon" />
                 </button>
-                <div className="collapse navbar-collapse" id="navbarsExample04">
+                <div
+                  className={`collapse navbar-collapse`}
+                  id="navbarsExample04"
+                >
                   <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                       <Link
                         className={`nav-link ${
-                          location.pathname === "/home" ? "active" : ""
+                          location.pathname === "/" ? "active" : ""
                         }`}
                         to="/"
                       >
                         Home
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link
-                        className={`nav-link ${
-                          location.pathname === "/about" ? "active" : ""
-                        }`}
-                        to="/about"
-                      >
-                        About
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link
-                        className={`nav-link ${
-                          location.pathname === "/ourtravel" ? "active" : ""
-                        }`}
-                        to="/ourtravel"
-                        onClick={handleOurTravelClick}
-                      >
-                        Our Travel
-                      </Link>
-                    </li>
                     {logged && username && (
                       <>
-                        <li>
-                          <a href="#ciao" className="nav-link">
+                        <li className="nav-item">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/ourtravel" ? "active" : ""
+                            }`}
+                            to="/ourtravel"
+                            onClick={handleOurTravelClick}
+                          >
+                            Our Travel
+                          </Link>
+                        </li>
+
+                        <li className="nav-item">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/myprenotations"
+                                ? "active"
+                                : ""
+                            }`}
+                            to="/myprenotations"
+                            onClick={handleUsernameClick}
+                          >
                             {username}
-                          </a>
+                          </Link>
                         </li>
                         <li>
                           <a
@@ -162,11 +172,11 @@ const Header = () => {
                         <li className="nav-item">
                           <Link
                             className={`nav-link ${
-                              location.pathname === "/sign in" ? "active" : ""
+                              location.pathname === "/sign-in" ? "active" : ""
                             }`}
-                            to="/sign in"
+                            to="/sign-in"
                           >
-                            Sign In
+                            Register
                           </Link>
                         </li>
                       </>

@@ -49,9 +49,9 @@ public class PrenotazioneController {
 		User user = prenotazione.getUser();
 		if (viaggio != null) {
 			String citta = viaggio.getCitta();
-			// ... altre operazioni utilizzando l'oggetto viaggio
+
 		} else {
-			// Gestisci il caso in cui viaggio sia null
+
 		}
 		return prenotazione;
 	}
@@ -82,15 +82,5 @@ public class PrenotazioneController {
 
 		prenotazioneService.delete(id);
 	}
-
-//	@GetMapping("/data/{dataPrenotazione}")
-//	public List<Prenotazione> getPrenotazioniByDataPrenotazione(@PathVariable LocalDate dataPrenotazione) {
-//		return prenotazioneService.getPrenotazioniByDataPrenotazione(dataPrenotazione);
-//	}
-//
-//	@GetMapping("/cliente/{cliente}")
-//	public List<Prenotazione> getPrenotazioniByNomePasseggero(@PathVariable Cliente cliente) {
-//		return prenotazioneService.getPrenotazioniByCliente(cliente);
-//	}
 
 }

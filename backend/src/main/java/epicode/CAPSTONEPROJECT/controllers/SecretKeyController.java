@@ -18,5 +18,4 @@ public class SecretKeyController {
 		return ResponseEntity.ok(secretKey);
 	}
 
-	// Altri metodi del controller...
 }

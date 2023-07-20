@@ -66,8 +66,8 @@ const OurTravel = () => {
                   </div>
                   <div className="bed_room">
                     <h3>{viaggio.citta}</h3>
-                    <p>{viaggio.descrizione}</p>
-                    <p>{viaggio.prezzo}</p>
+                    <p>{viaggio.stato}</p>
+                    <p>{viaggio.prezzo}€</p>
                   </div>
                 </div>
               </div>
