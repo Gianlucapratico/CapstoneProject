@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+Benvenuti su Movida
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Benvenuti nella repository del nostro sito di viaggi, dove i sogni diventano realtà! Questa repository contiene il codice sorgente del nostro sito web di agenzia di viaggi.
 
-## Available Scripts
+Cosa offre il nostro sito
+Itinerari personalizzati: Creiamo viaggi su misura per soddisfare le vostre esigenze e desideri di viaggio. Ogni viaggio è unico e creato con amore per garantire esperienze straordinarie.
 
-In the project directory, you can run:
+Destinazioni mozzafiato: Esplorate luoghi incredibili in tutto il mondo. Dalle mete più famose ai tesori nascosti, vi guideremo alla scoperta di culture affascinanti e paesaggi mozzafiato.
 
-### `npm start`
+Servizio clienti di prima classe: Il vostro comfort e soddisfazione sono la nostra priorità. Il nostro team esperto è sempre pronto ad assistervi e rendere il vostro viaggio indimenticabile.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Come iniziare
+Clone questa repository sul tuo computer:
+bash
+Copy code
+git clone https://github.com/Gianlucapratico/CapstoneProject.git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Installare le dipendenze necessarie:
+npm install
 
-### `npm test`
+Avviare l'applicazione in modalità sviluppo:
+npm start
+Inizia a esplorare il codice e personalizzare il sito secondo le tue esigenze.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Contributi
+Se desideri contribuire al nostro progetto, sei il benvenuto! 
 
-### `npm run build`
+Contattaci
+Per domande o maggiori informazioni, contattaci tramite i seguenti canali:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Telefono: [3464105830]
+Email: [luca.pratico@live.it]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Grazie per il tuo interesse nella nostra repository! Buon viaggio e divertiti a esplorare il mondo!
