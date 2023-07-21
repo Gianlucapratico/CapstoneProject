@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
 
 const Header = () => {
   const location = useLocation();

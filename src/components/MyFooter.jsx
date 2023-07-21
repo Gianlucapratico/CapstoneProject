@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const MyFooter = () => {
   return (
     <footer>
@@ -25,14 +26,17 @@ const MyFooter = () => {
               <h3>Menu Link</h3>
               <ul className="link_menu">
                 <li>
-                  <a href="about.html"> About</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <a href="room.html">Our Travels</a>
+                  <Link to="/ourtravel">Our Travels </Link>
                 </li>
 
                 <li>
-                  <a href="contact.html">Contact Us</a>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/sign-in">Register</Link>
                 </li>
               </ul>
             </div>
@@ -69,7 +73,7 @@ const MyFooter = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-10 offset-md-1">
-              <p>© 2023 All Rights Reserved. Design by{" Gianluca Praticò"}</p>
+              <p>© 2023 All Rights Reserved. Design by {"Gianluca Praticò"}</p>
             </div>
           </div>
         </div>

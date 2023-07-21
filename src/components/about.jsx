@@ -30,24 +30,25 @@ const About = () => {
               <div className="titlepage">
                 <h2>About Us</h2>
                 <p>
-                  Benvenuti nel mondo dello sviluppatore web! Sono appassionato
-                  di creare esperienze digitali coinvolgenti e funzionali. Con
-                  competenze in HTML, CSS JavaScript, React, Java e SpringBoot
-                  trasformo idee in realtà, costruendo siti web belli e
-                  responsivi. Il mio obiettivo è offrire soluzioni intuitive e
-                  ottimizzate, garantendo una navigazione fluida e un design
-                  accattivante. Con un'attenzione ai dettagli e la voglia di
-                  imparare costantemente nuove tecnologie, sono pronto ad
-                  affrontare qualsiasi sfida.La collaborazione e la
-                  comunicazione sono per me fondamentali per comprendere appieno
-                  le esigenze dei clienti e tradurle in soluzioni digitali di
-                  successo. Sia che tu abbia bisogno di un sito web statico,
-                  un'applicazione web complessa o un e-commerce dinamico, sono
-                  qui per rendere la tua visione una realtà digitale. Lavoriamo
-                  insieme per creare un impatto duraturo sul web! Sono
-                  entusiasta di creare e costruire, un codice alla volta.
-                  Contattami per discutere il tuo prossimo progetto e iniziare
-                  questa avventura di sviluppo web insieme!
+                  Benvenuti nel mio mondo di sviluppatore web! Sono un
+                  appassionato del mondo digitale: in particolar modo mi piace
+                  creare esperienze coinvolgenti e funzionali. Con competenze in
+                  HTML, CSS JavaScript, React, Java e SpringBoot, trasformo idee
+                  in realtà, costruendo siti web belli e responsivi. Il mio
+                  obiettivo è offrire soluzioni intuitive e ottimizzate,
+                  garantendo una navigazione fluida e un design accattivante.
+                  Con un'attenzione ai dettagli e la voglia di imparare
+                  costantemente nuove tecnologie, sono pronto ad affrontare
+                  qualsiasi sfida. La collaborazione e la comunicazione sono per
+                  me fondamentali per comprendere appieno le esigenze dei
+                  clienti e tradurle in soluzioni digitali di successo. Sia che
+                  tu abbia bisogno di un sito web statico, un'applicazione web
+                  complessa o un e-commerce dinamico, sono qui per rendere la
+                  tua visione una realtà digitale. Lavoriamo insieme per creare
+                  un impatto duraturo sul web! Sono entusiasta di creare e
+                  costruire, un codice alla volta. Contattami per discutere il
+                  tuo prossimo progetto e iniziare questa avventura di sviluppo
+                  web insieme!
                 </p>
               </div>
             </div>
