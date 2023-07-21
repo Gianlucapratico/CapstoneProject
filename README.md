@@ -1,35 +1,46 @@
-Benvenuti su Movida
-
-Benvenuti nella repository del nostro sito di viaggi, dove i sogni diventano realtà! Questa repository contiene il codice sorgente del nostro sito web di agenzia di viaggi.
-
-Cosa offre il nostro sito
-Itinerari personalizzati: Creiamo viaggi su misura per soddisfare le vostre esigenze e desideri di viaggio. Ogni viaggio è unico e creato con amore per garantire esperienze straordinarie.
-
-Destinazioni mozzafiato: Esplorate luoghi incredibili in tutto il mondo. Dalle mete più famose ai tesori nascosti, vi guideremo alla scoperta di culture affascinanti e paesaggi mozzafiato.
-
-Servizio clienti di prima classe: Il vostro comfort e soddisfazione sono la nostra priorità. Il nostro team esperto è sempre pronto ad assistervi e rendere il vostro viaggio indimenticabile.
-
-Come iniziare
-Clone questa repository sul tuo computer:
-bash
-Copy code
-git clone https://github.com/Gianlucapratico/CapstoneProject.git
-
-Installare le dipendenze necessarie:
-npm install
-
-Avviare l'applicazione in modalità sviluppo:
-npm start
-Inizia a esplorare il codice e personalizzare il sito secondo le tue esigenze.
-
-Contributi
-Se desideri contribuire al nostro progetto, sei il benvenuto! 
-
-Contattaci
-Per domande o maggiori informazioni, contattaci tramite i seguenti canali:
-
-Telefono: [3464105830]
-Email: [luca.pratico@live.it]
+Movida 🏨
 
 
-Grazie per il tuo interesse nella nostra repository! Buon viaggio e divertiti a esplorare il mondo!
+Movida è un sito web  per la prenotazione di alcuni viaggi. Offre ai clienti una piattaforma integrata per gestire al meglio le prenotazioni, con possibilità di annullarle.
+
+Funzionalità 🚀
+Gestione della registrazione con resitrizioni e messaggi di errore personalizzati
+Gestione del login attraverso token JWT
+Gestione dei viaggi con possibilità di eliminazione e aggiunta
+Gestione delle prenotazioni con possibiltà di aggiunta e rimozione
+Navbar dinamica
+Paginazione.
+Layout responsive.
+
+Tecnologie Utilizzate 💻
+Front-end: React
+Back-end: Java, Spring Boot
+Database: PostgreSQL
+
+Installazione e Utilizzo 🛠️
+Front-End
+https://github.com/Gianlucapratico/CapstoneProject
+
+Clona il repository del front-end di Movida: git clone https://github.com/Gianlucapratico/CapstoneProject
+Entra nella directory del front-end: cd c/Projects/CapstoneProject
+Installa le dipendenze: npm install
+Avvia l'applicazione: npm start
+Back-End e DB
+https://github.com /c/Projects/CapstoneProject
+
+Clona il repository del back-end di Movida: git clone https://github.com C:\Projects\CapstoneProject\backend
+Entra nella directory del back-end: cd CapstoneProject
+Importa il progetto in un IDE compatibile con Java e Spring Boot.
+Configura il database PostgreSQL con le credenziali appropriate contenute nel file application.properties.
+Avvia il server del back-end tramite l'IDE.
+Il backend di Movida sarà ora in esecuzione e pronto per gestire le richieste del front-end.
+
+Ora Movida è completamente installato e funzionante. Puoi accedere all'applicazione front-end all'indirizzo http://localhost:3000 e iniziare a gestire le prenotazioni e i viaggi.
+
+🚀 Grazie per aver scelto Movida! Spero che ti sia paciuto viaggiare con noi!.
+
+Contatti 📞
+Email: luca.pratico@live.it
+GitHub: Gianlucapratico
+LinkedIn: Gianluca Praticò
+🐼🏨 Happy coding! 🚀
