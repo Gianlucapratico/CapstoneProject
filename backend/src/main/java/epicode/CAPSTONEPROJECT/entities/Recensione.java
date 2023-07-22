@@ -8,7 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,15 +26,25 @@ public class Recensione {
 	private String commento;
 	private int valutazione;
 
-	@OneToOne
-	@JoinColumn(name = "prenotazione_id")
+	@ManyToOne
 	@JsonIgnore
+	@JoinColumn(name = "prenotazione_id")
 	private Prenotazione prenotazione;
+	@Transient
+	private UUID prenotazioneId;
+
+	public UUID getPrenotazioneId() {
+		return prenotazioneId;
+	}
+
+	public void setPrenotazioneId(UUID prenotazioneId) {
+		this.prenotazioneId = prenotazioneId;
+	}
 
 	public Recensione(String commento, int valutazione, Prenotazione prenotazione) {
-
 		this.commento = commento;
 		this.valutazione = valutazione;
 		this.prenotazione = prenotazione;
 	}
+
 }

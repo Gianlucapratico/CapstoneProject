@@ -9,8 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import epicode.CAPSTONEPROJECT.entities.Prenotazione;
 import epicode.CAPSTONEPROJECT.entities.Recensione;
 import epicode.CAPSTONEPROJECT.exceptions.NotFoundException;
+import epicode.CAPSTONEPROJECT.repositories.PrenotazioneRepository;
 import epicode.CAPSTONEPROJECT.repositories.RecensioneRepository;
 
 @Service
@@ -18,10 +20,18 @@ public class RecensioneService {
 
 	@Autowired
 	RecensioneRepository recensioneRepo;
+	@Autowired
+	PrenotazioneRepository prenotazioneRepo;
 
 	// ***** CREATE *****
-	public Recensione create(Recensione recensione) {
-		return recensioneRepo.save(recensione);
+	public Recensione create(Recensione r) {
+		Prenotazione prenotazione = prenotazioneRepo.findById(r.getPrenotazione().getId())
+				.orElseThrow(() -> new NotFoundException("Prenotazione non trovata" + r.getPrenotazione().getId()));
+		Recensione newRecensione = new Recensione();
+		newRecensione.setCommento(r.getCommento());
+		newRecensione.setValutazione(r.getValutazione());
+		newRecensione.setPrenotazione(prenotazione);
+		return recensioneRepo.save(newRecensione); 
 	}
 
 	// ***** READ *****
