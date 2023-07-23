@@ -972,3 +972,57 @@ ul.social_icon li a:hover {
 .buttonWrapper button {
   width: 140px;
 }
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 28px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+.wrapperValutazione {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+.nuovaRecensione {
+  justify-content: center;
+}
+.modal-header {
+  display: flex;
+  justify-content: center;
+}
+b {
+  font-size: 25px;
+}
+.recensioni {
+  font-size: 35px;
+  font-style: oblique;
+  color: #0b2a80;
+}
+.numero {
+  font-size: 18px;
+}
+.commento {
+  font-size: 18px;
+}
+.rating-stars {
+  color: rgb(211, 211, 73);
+  font-size: 40px;
+}

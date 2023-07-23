@@ -1,42 +1,86 @@
 import React, { useEffect, useState } from "react";
-
 import { Modal } from "react-bootstrap";
+import Recensioni from "./Recensioni";
+import Stars from "./Stars";
 
 const MyPrenotations = () => {
   const [prenotazioni, setPrenotazioni] = useState([]);
-  const token = localStorage.getItem("token");
-  const [showModal, setShowModal] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [showRecensioneModal, setShowRecensioneModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedPrenotazioneId, setSelectedPrenotazioneId] = useState(null);
+  const [selectedRecensione, setSelectedRecensione] = useState(null);
+  const [recensioni, setRecensioni] = useState([]);
 
-  useEffect(() => {
-    const fetchPrenotazioni = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/api/prenotazioni", {
+  const handleOpenRecensione = async (prenotazioneId) => {
+    setSelectedPrenotazioneId(prenotazioneId);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:3001/api/recensioni?prenotazioneId=${prenotazioneId}`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setPrenotazioni(data.content);
-        } else {
-          throw new Error("Errore durante il recupero delle prenotazioni");
         }
-      } catch (error) {
-        console.error("Errore durante il recupero delle prenotazioni:", error);
-      }
-    };
+      );
 
-    fetchPrenotazioni();
-  }, [token]);
+      if (response.ok) {
+        const data = await response.json();
+        const recensioni = data.content;
+        setRecensioni(recensioni);
+        setShowRecensioneModal(true);
+      } else {
+        throw new Error("Errore durante il recupero delle recensioni");
+      }
+    } catch (error) {
+      console.error("Errore durante il recupero delle recensioni:", error);
+    }
+  };
+
+  const handleOpenRecensioneForm = (prenotazioneId) => {
+    setSelectedPrenotazioneId(prenotazioneId);
+    setSelectedRecensione(null); // Resetta il form delle recensioni
+    setShowRecensioneModal(true);
+  };
 
   const handleDeletePrenotazione = async (prenotazioneId) => {
     setSelectedPrenotazioneId(prenotazioneId);
-    setShowModal(true);
+    setShowDeleteModal(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const fetchPrenotazioni = async () => {
+    try {
+      const responsePrenotazioni = await fetch(
+        "http://localhost:3001/api/prenotazioni",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (responsePrenotazioni.ok) {
+        const dataPrenotazioni = await responsePrenotazioni.json();
+        setPrenotazioni(dataPrenotazioni.content);
+      } else {
+        throw new Error("Errore durante il recupero delle prenotazioni");
+      }
+    } catch (error) {
+      console.error(
+        "Errore durante il recupero delle prenotazioni e recensioni:",
+        error
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchPrenotazioni();
+  }, [token, prenotazioni]);
+
+  const confirmDeletePrenotazione = async () => {
     if (!selectedPrenotazioneId) return;
 
     try {
@@ -46,6 +90,7 @@ const MyPrenotations = () => {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         }
       );
@@ -65,12 +110,12 @@ const MyPrenotations = () => {
     }
 
     setSelectedPrenotazioneId(null);
-    setShowModal(false);
+    setShowDeleteModal(false);
   };
 
   const handleCloseModal = () => {
     setSelectedPrenotazioneId(null);
-    setShowModal(false);
+    setShowDeleteModal(false);
   };
 
   return (
@@ -121,10 +166,19 @@ const MyPrenotations = () => {
                     <p>{prenotazione.viaggio.stato}</p>
 
                     <button
-                      className="read_more2 mt-3 "
+                      className="read_more2 mt-3"
                       onClick={() => handleDeletePrenotazione(prenotazione.id)}
                     >
                       Cancella
+                    </button>
+                    <button
+                      className="read_more2 mt-3 ml-2"
+                      onClick={() => {
+                        handleOpenRecensione(prenotazione.id);
+                        setShowRecensioneModal(true);
+                      }}
+                    >
+                      Recensione
                     </button>
                   </div>
                 </div>
@@ -133,9 +187,19 @@ const MyPrenotations = () => {
           </div>
         </div>
       </div>
-
+      {selectedPrenotazioneId && (
+        <Recensioni
+          prenotazioneId={selectedPrenotazioneId}
+          prenotazione={prenotazioni.find(
+            (prenotazione) => prenotazione.id === selectedPrenotazioneId
+          )}
+          setShowModal={setShowRecensioneModal}
+          showModal={showRecensioneModal}
+          setSelectedRecensione={setSelectedRecensione}
+        />
+      )}
       {/* Modal for confirmation */}
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal show={showDeleteModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Conferma Eliminazione Prenotazione</Modal.Title>
         </Modal.Header>
@@ -144,11 +208,74 @@ const MyPrenotations = () => {
           <button className="btn btn-secondary" onClick={handleCloseModal}>
             Annulla
           </button>
-          <button className="btn btn-danger" onClick={handleConfirmDelete}>
+          <button
+            className="btn btn-danger"
+            onClick={confirmDeletePrenotazione}
+          >
             Conferma
           </button>
         </Modal.Footer>
       </Modal>
+      {prenotazioni.length > 0 && (
+        <div className="back_re mb-5">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="title">
+                  <h2>Recensioni</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {prenotazioni ? (
+        prenotazioni.map(
+          (prenotazione) =>
+            prenotazione.recensione.length > 0 && (
+              <div
+                className="d-flex justify-content-center"
+                key={prenotazione.id}
+              >
+                <div className="mb-5">
+                  <h3 className="recensioni">
+                    Recensioni per la prenotazione:
+                    {" " + prenotazione.viaggio.citta}
+                  </h3>
+                  {prenotazione.recensione.map((recensione) => {
+                    return (
+                      <>
+                        <div
+                          className="card-body text-center"
+                          key={recensione.id}
+                        >
+                          <p className="card-title">
+                            <b> Valutazione </b>
+                            <p className="mt-2 rating-stars">
+                              <Stars
+                                starNumber={recensione.valutazione}
+                              ></Stars>
+                            </p>
+                          </p>
+
+                          <p className="card-text">
+                            <b> Commento </b>
+                            <p className=" commento mt-3 text-dark ">
+                              {recensione.commento}
+                            </p>
+                          </p>
+                          <hr />
+                        </div>
+                      </>
+                    );
+                  })}
+                </div>
+              </div>
+            )
+        )
+      ) : (
+        <div>Nessuna recensione disponibile</div>
+      )}
     </div>
   );
 };

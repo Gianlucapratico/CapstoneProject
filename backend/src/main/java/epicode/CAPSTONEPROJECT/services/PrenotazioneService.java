@@ -1,5 +1,6 @@
 package epicode.CAPSTONEPROJECT.services;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import epicode.CAPSTONEPROJECT.entities.Prenotazione;
+import epicode.CAPSTONEPROJECT.entities.Recensione;
 import epicode.CAPSTONEPROJECT.entities.User;
 import epicode.CAPSTONEPROJECT.exceptions.NotFoundException;
 import epicode.CAPSTONEPROJECT.repositories.PrenotazioneRepository;
+import epicode.CAPSTONEPROJECT.repositories.RecensioneRepository;
 import epicode.CAPSTONEPROJECT.repositories.UsersRepository;
 import epicode.CAPSTONEPROJECT.repositories.ViaggioRepository;
 
@@ -26,6 +29,8 @@ public class PrenotazioneService {
 	ViaggioRepository viaggioRepo;
 	@Autowired
 	UsersRepository usersRepo;
+	@Autowired
+	RecensioneRepository recensioneRepo;
 
 	// ***** CREATE *****
 	public Prenotazione create(Prenotazione p) {
@@ -74,10 +79,31 @@ public class PrenotazioneService {
 	}
 
 	// ***** DELETE *****
-	public void delete(UUID prenotazioneId) throws NotFoundException {
-		Prenotazione prenotazioneFound = this.findById(prenotazioneId);
+	public void deletePrenotazione(UUID prenotazioneId) throws NotFoundException {
+		Prenotazione prenotazioneFound = findById(prenotazioneId);
 
+		// Prima di eliminare la prenotazione, elimina tutte le recensioni associate
+		List<Recensione> recensioni = prenotazioneFound.getRecensione();
+		if (recensioni != null && !recensioni.isEmpty()) {
+			for (Recensione recensione : recensioni) {
+				deleteRecensione(recensione.getId());
+			}
+		}
+
+		// Elimina infine la prenotazione
 		prenotazioneRepo.delete(prenotazioneFound);
 	}
+
+	public void deleteRecensione(UUID recensioneId) throws NotFoundException {
+		Recensione recensioneFound = findRecensioneById(recensioneId);
+		recensioneRepo.delete(recensioneFound);
+	}
+
+	public Recensione findRecensioneById(UUID recensioneId) throws NotFoundException {
+		return recensioneRepo.findById(recensioneId)
+				.orElseThrow(() -> new NotFoundException("Recensione non trovata con ID: " + recensioneId));
+	}
+
+	// ... (altri metodi)
 
 }

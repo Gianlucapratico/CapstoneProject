@@ -79,8 +79,11 @@ public class PrenotazioneController {
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletePrenotazione(@PathVariable UUID id) {
-
-		prenotazioneService.delete(id);
+		try {
+			prenotazioneService.deletePrenotazione(id);
+		} catch (NotFoundException e) {
+			// Gestisci l'eccezione NotFoundException se necessario
+			// Ad esempio, restituisci una risposta con errore appropriata
+		}
 	}
-
 }
