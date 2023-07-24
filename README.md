@@ -2,12 +2,13 @@ Movida 🏨
 ![Banner di Movida](public/Capstone.png)
 
 
-Movida è un sito web  per la prenotazione di alcuni viaggi. Offre ai clienti una piattaforma integrata per gestire al meglio le prenotazioni, con possibilità di annullarle.
+Movida è un sito web  per la prenotazione e la recensione di alcuni viaggi. Offre ai clienti una piattaforma integrata per gestire al meglio le prenotazioni, con possibilità di annullarle.
 
 Funzionalità 🚀
 Gestione della registrazione con resitrizioni e messaggi di errore personalizzati
 Gestione del login attraverso token JWT 
 Gestione delle prenotazioni con possibiltà di rimozione
+Gestione delle recensioni
 Navbar dinamica
 Paginazione.
 Layout responsive.
